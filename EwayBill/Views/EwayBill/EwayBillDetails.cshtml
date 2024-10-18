@@ -1,0 +1,692 @@
+﻿@*@model EwayBill.Models.EwayBillResponse
+
+    <h2>E-Way Bill Details</h2>
+
+    <form method="get" action="@Url.Action("EwayBillDetails", "EwayBill")">
+        <div class="form-group">
+            <label for="ewbNo">Enter E-Way Bill Number:</label>
+            <input type="text" id="ewbNo" name="ewbNo" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="email">Enter Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Get Details</button>
+    </form>
+
+    <div>
+        <a href="@Url.Action("Index", "EwayBill")" class="btn btn-secondary">Back to Index</a>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Generate", "EwayBill")" class="btn btn-secondary">Generate E-Way Bill</a>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Authenticate", "EwayBill")" class="btn btn-secondary">Authenticate</a>
+    </div>
+
+    @if (Model != null && Model.Data != null)
+    {
+        <table class="table table-bordered">
+            <tr>
+                <th>E-Way Bill Number</th>
+                <td>@Model.Data.ewbNo</td>
+            </tr>
+            <tr>
+                <th>E-Way Bill Date</th>
+                <td>@Model.Data.EwayBillDate</td>
+            </tr>
+            <tr>
+                <th>Generation Mode</th>
+                <td>@Model.Data.GenMode</td>
+            </tr>
+            <tr>
+                <th>User GSTIN</th>
+                <td>@Model.Data.UserGstin</td>
+            </tr>
+            <tr>
+                <th>Supply Type</th>
+                <td>@Model.Data.SupplyType</td>
+            </tr>
+            <tr>
+                <th>Sub Supply Type</th>
+                <td>@Model.Data.SubSupplyType</td>
+            </tr>
+            <tr>
+                <th>Document Type</th>
+                <td>@Model.Data.DocType</td>
+            </tr>
+            <tr>
+                <th>Document Number</th>
+                <td>@Model.Data.DocNo</td>
+            </tr>
+            <tr>
+                <th>Document Date</th>
+                <td>@Model.Data.DocDate</td>
+            </tr>
+            <tr>
+                <th>From GSTIN</th>
+                <td>@Model.Data.FromGstin</td>
+            </tr>
+            <tr>
+                <th>From Trade Name</th>
+                <td>@Model.Data.FromTrdName</td>
+            </tr>
+            <tr>
+                <th>From Address 1</th>
+                <td>@Model.Data.FromAddr1</td>
+            </tr>
+            <tr>
+                <th>From Address 2</th>
+                <td>@Model.Data.FromAddr2</td>
+            </tr>
+            <tr>
+                <th>From Place</th>
+                <td>@Model.Data.FromPlace</td>
+            </tr>
+            <tr>
+                <th>From Pincode</th>
+                <td>@Model.Data.FromPincode</td>
+            </tr>
+            <tr>
+                <th>From State Code</th>
+                <td>@Model.Data.FromStateCode</td>
+            </tr>
+            <tr>
+                <th>To GSTIN</th>
+                <td>@Model.Data.ToGstin</td>
+            </tr>
+            <tr>
+                <th>To Trade Name</th>
+                <td>@Model.Data.ToTrdName</td>
+            </tr>
+            <tr>
+                <th>To Address 1</th>
+                <td>@Model.Data.ToAddr1</td>
+            </tr>
+            <tr>
+                <th>To Address 2</th>
+                <td>@Model.Data.ToAddr2</td>
+            </tr>
+            <tr>
+                <th>To Place</th>
+                <td>@Model.Data.ToPlace</td>
+            </tr>
+            <tr>
+                <th>To Pincode</th>
+                <td>@Model.Data.ToPincode</td>
+            </tr>
+            <tr>
+                <th>To State Code</th>
+                <td>@Model.Data.ToStateCode</td>
+            </tr>
+            <tr>
+                <th>Total Value</th>
+                <td>@Model.Data.TotalValue</td>
+            </tr>
+            <tr>
+                <th>Total Invoice Value</th>
+                <td>@Model.Data.TotInvValue</td>
+            </tr>
+            <tr>
+                <th>CGST Value</th>
+                <td>@Model.Data.CgstValue</td>
+            </tr>
+            <tr>
+                <th>SGST Value</th>
+                <td>@Model.Data.SgstValue</td>
+            </tr>
+            <tr>
+                <th>IGST Value</th>
+                <td>@Model.Data.IgstValue</td>
+            </tr>
+            <tr>
+                <th>Cess Value</th>
+                <td>@Model.Data.CessValue</td>
+            </tr>
+            <tr>
+                <th>Transporter ID</th>
+                <td>@Model.Data.TransporterId</td>
+            </tr>
+            <tr>
+                <th>Transporter Name</th>
+                <td>@Model.Data.TransporterName</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>@Model.Data.Status</td>
+            </tr>
+            <tr>
+                <th>Actual Distance</th>
+                <td>@Model.Data.ActualDist</td>
+            </tr>
+            <tr>
+                <th>Number of Valid Days</th>
+                <td>@Model.Data.NoValidDays</td>
+            </tr>
+            <tr>
+                <th>Valid Upto</th>
+                <td>@Model.Data.ValidUpto</td>
+            </tr>
+            <tr>
+                <th>Extended Times</th>
+                <td>@Model.Data.ExtendedTimes</td>
+            </tr>
+            <tr>
+                <th>Reject Status</th>
+                <td>@Model.Data.RejectStatus</td>
+            </tr>
+            <tr>
+                <th>Vehicle Type</th>
+                <td>@Model.Data.VehicleType</td>
+            </tr>
+            <tr>
+                <th>Actual From State Code</th>
+                <td>@Model.Data.ActFromStateCode</td>
+            </tr>
+            <tr>
+                <th>Actual To State Code</th>
+                <td>@Model.Data.ActToStateCode</td>
+            </tr>
+            <tr>
+                <th>Transaction Type</th>
+                <td>@Model.Data.TransactionType</td>
+            </tr>
+            <tr>
+                <th>Other Value</th>
+                <td>@Model.Data.OtherValue</td>
+            </tr>
+            <tr>
+                <th>Cess Non-Advol Value</th>
+                <td>@Model.Data.CessNonAdvolValue</td>
+            </tr>
+        </table>
+
+        <h3>Item List</h3>
+        if (Model.Data.ItemList != null && Model.Data.ItemList.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Item No</th>
+                        <th>Product Name</th>
+                        <th>Product Description</th>
+                        <th>HSN Code</th>
+                        <th>Quantity</th>
+                        <th>Quantity Unit</th>
+                        <th>CGST Rate</th>
+                        <th>SGST Rate</th>
+                        <th>IGST Rate</th>
+                        <th>Cess Rate</th>
+                        <th>Taxable Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Data.ItemList)
+                    {
+                        <tr>
+                            <td>@item.ItemNo</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.ProductDesc</td>
+                            <td>@item.HsnCode</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.QtyUnit</td>
+                            <td>@item.CgstRate</td>
+                            <td>@item.SgstRate</td>
+                            <td>@item.IgstRate</td>
+                            <td>@item.CessRate</td>
+                            <td>@item.TaxableAmount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No items found.</p>
+        }
+
+        <h3>Vehicle List Details</h3>
+        if (Model.Data.VehiclListDetails != null && Model.Data.VehiclListDetails.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Vehicle Number</th>
+                        <th>From Place</th>
+                        <th>From State</th>
+                        <th>Tripsheet Number</th>
+                        <th>User GSTIN Trans in</th>
+                        <th>Entered Date</th>
+                        <th>Transport Mode</th>
+                        <th>Transport Document Number</th>
+                        <th>Transport Document Date</th>
+                        <th>Group Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var vehicle in Model.Data.VehiclListDetails)
+                    {
+                        <tr>
+                            <td>@vehicle.VehicleNo</td>
+                            <td>@vehicle.FromPlace</td>
+                            <td>@vehicle.FromState</td>
+                            <td>@vehicle.TripshtNo</td>
+                            <td>@vehicle.UserGSTINTransin</td>
+                            <td>@vehicle.EnteredDate</td>
+                            <td>@vehicle.TransMode</td>
+                            <td>@vehicle.TransDocNo</td>
+                            <td>@vehicle.TransDocDate</td>
+                            <td>@vehicle.GroupNo</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No vehicle details found.</p>
+        }
+    }
+    else
+    {
+        <p>No data found.</p>
+    }*@
+
+<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+
+@model EwayBill.Models.EwayBillResponse
+
+<h2 class="text-center my-4">E-Way Bill Details</h2>
+
+<div class="button-header">
+    <a href="@Url.Action("Index", "EwayBill")" class="btn custom-header-btn">Back to Index</a>
+    <a href="@Url.Action("Generate", "EwayBill")" class="btn custom-header-btn">Generate E-Way Bill</a>
+    <a href="@Url.Action("ViewGenerateResponse", "EwayBill")" class="btn custom-header-btn">View Generate Response</a>
+    <a href="@Url.Action("ViewGenerateData", "EwayBill")" class="btn custom-header-btn">View All E-Way Bill</a>
+    <a href="@Url.Action("Authenticate", "EwayBill")" class="btn custom-header-btn">Authenticate</a>
+</div>
+
+<div class="form-container">
+    <form method="get" action="@Url.Action("EwayBillDetails", "EwayBill")">
+        <div>
+            <label for="ewbNo">Enter E-Way Bill Number:</label>
+            <input type="text" id="ewbNo" name="ewbNo" class="form-control" required />
+        </div>
+        <div>
+            <label for="email">Enter Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required />
+        </div>
+        <button type="submit" class="btn custom-btn">Get Details</button>
+    </form>
+</div>
+
+@if (Model != null && Model.Data != null)
+{
+    <div class="details-container">
+        <h3>E-Way Bill Details</h3>
+        <table class="table table-bordered">
+            <tr>
+                <th>E-Way Bill Number</th>
+                <td>@Model.Data.ewbNo</td>
+            </tr>
+            <tr>
+                <th>E-Way Bill Date</th>
+                <td>@Model.Data.EwayBillDate</td>
+            </tr>
+            <tr>
+                <th>Generation Mode</th>
+                <td>@Model.Data.GenMode</td>
+            </tr>
+            <tr>
+                <th>User GSTIN</th>
+                <td>@Model.Data.UserGstin</td>
+            </tr>
+            <tr>
+                <th>Supply Type</th>
+                <td>@Model.Data.SupplyType</td>
+            </tr>
+            <tr>
+                <th>Sub Supply Type</th>
+                <td>@Model.Data.SubSupplyType</td>
+            </tr>
+            <tr>
+                <th>Document Type</th>
+                <td>@Model.Data.DocType</td>
+            </tr>
+            <tr>
+                <th>Document Number</th>
+                <td>@Model.Data.DocNo</td>
+            </tr>
+            <tr>
+                <th>Document Date</th>
+                <td>@Model.Data.DocDate</td>
+            </tr>
+            <tr>
+                <th>From GSTIN</th>
+                <td>@Model.Data.FromGstin</td>
+            </tr>
+            <tr>
+                <th>From Trade Name</th>
+                <td>@Model.Data.FromTrdName</td>
+            </tr>
+            <tr>
+                <th>From Address 1</th>
+                <td>@Model.Data.FromAddr1</td>
+            </tr>
+            <tr>
+                <th>From Address 2</th>
+                <td>@Model.Data.FromAddr2</td>
+            </tr>
+            <tr>
+                <th>From Place</th>
+                <td>@Model.Data.FromPlace</td>
+            </tr>
+            <tr>
+                <th>From Pincode</th>
+                <td>@Model.Data.FromPincode</td>
+            </tr>
+            <tr>
+                <th>From State Code</th>
+                <td>@Model.Data.FromStateCode</td>
+            </tr>
+            <tr>
+                <th>To GSTIN</th>
+                <td>@Model.Data.ToGstin</td>
+            </tr>
+            <tr>
+                <th>To Trade Name</th>
+                <td>@Model.Data.ToTrdName</td>
+            </tr>
+            <tr>
+                <th>To Address 1</th>
+                <td>@Model.Data.ToAddr1</td>
+            </tr>
+            <tr>
+                <th>To Address 2</th>
+                <td>@Model.Data.ToAddr2</td>
+            </tr>
+            <tr>
+                <th>To Place</th>
+                <td>@Model.Data.ToPlace</td>
+            </tr>
+            <tr>
+                <th>To Pincode</th>
+                <td>@Model.Data.ToPincode</td>
+            </tr>
+            <tr>
+                <th>To State Code</th>
+                <td>@Model.Data.ToStateCode</td>
+            </tr>
+            <tr>
+                <th>Total Value</th>
+                <td>@Model.Data.TotalValue</td>
+            </tr>
+            <tr>
+                <th>Total Invoice Value</th>
+                <td>@Model.Data.TotInvValue</td>
+            </tr>
+            <tr>
+                <th>CGST Value</th>
+                <td>@Model.Data.CgstValue</td>
+            </tr>
+            <tr>
+                <th>SGST Value</th>
+                <td>@Model.Data.SgstValue</td>
+            </tr>
+            <tr>
+                <th>IGST Value</th>
+                <td>@Model.Data.IgstValue</td>
+            </tr>
+            <tr>
+                <th>Cess Value</th>
+                <td>@Model.Data.CessValue</td>
+            </tr>
+            <tr>
+                <th>Transporter ID</th>
+                <td>@Model.Data.TransporterId</td>
+            </tr>
+            <tr>
+                <th>Transporter Name</th>
+                <td>@Model.Data.TransporterName</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>@Model.Data.Status</td>
+            </tr>
+            <tr>
+                <th>Actual Distance</th>
+                <td>@Model.Data.ActualDist</td>
+            </tr>
+            <tr>
+                <th>Number of Valid Days</th>
+                <td>@Model.Data.NoValidDays</td>
+            </tr>
+            <tr>
+                <th>Valid Upto</th>
+                <td>@Model.Data.ValidUpto</td>
+            </tr>
+            <tr>
+                <th>Extended Times</th>
+                <td>@Model.Data.ExtendedTimes</td>
+            </tr>
+            <tr>
+                <th>Reject Status</th>
+                <td>@Model.Data.RejectStatus</td>
+            </tr>
+            <tr>
+                <th>Vehicle Type</th>
+                <td>@Model.Data.VehicleType</td>
+            </tr>
+            <tr>
+                <th>Actual From State Code</th>
+                <td>@Model.Data.ActFromStateCode</td>
+            </tr>
+            <tr>
+                <th>Actual To State Code</th>
+                <td>@Model.Data.ActToStateCode</td>
+            </tr>
+            <tr>
+                <th>Transaction Type</th>
+                <td>@Model.Data.TransactionType</td>
+            </tr>
+            <tr>
+                <th>Other Value</th>
+                <td>@Model.Data.OtherValue</td>
+            </tr>
+            <tr>
+                <th>Cess Non-Advol Value</th>
+                <td>@Model.Data.CessNonAdvolValue</td>
+            </tr>
+        </table>
+
+        <h3>Item List</h3>
+        @if (Model.Data.ItemList != null && Model.Data.ItemList.Any())
+        {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Item No</th>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>HSN Code</th>
+                    <th>Quantity</th>
+                    <th>Quantity Unit</th>
+                    <th>CGST Rate</th>
+                    <th>SGST Rate</th>
+                    <th>IGST Rate</th>
+                    <th>Cess Rate</th>
+                    <th>Taxable Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Data.ItemList)
+                {
+                    <tr>
+                        <td>@item.ItemNo</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.ProductDesc</td>
+                        <td>@item.HsnCode</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.QtyUnit</td>
+                        <td>@item.CgstRate</td>
+                        <td>@item.SgstRate</td>
+                        <td>@item.IgstRate</td>
+                        <td>@item.CessRate</td>
+                        <td>@item.TaxableAmount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <p>No items found.</p>
+        }
+
+        <h3>Vehicle List Details</h3>
+        @if (Model.Data.VehiclListDetails != null && Model.Data.VehiclListDetails.Any())
+        {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Vehicle Number</th>
+                    <th>From Place</th>
+                    <th>From State</th>
+                    <th>Tripsheet Number</th>
+                    <th>User GSTIN Trans in</th>
+                    <th>Entered Date</th>
+                    <th>Transport Mode</th>
+                    <th>Transport Document Number</th>
+                    <th>Transport Document Date</th>
+                    <th>Group Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vehicle in Model.Data.VehiclListDetails)
+                {
+                    <tr>
+                        <td>@vehicle.VehicleNo</td>
+                        <td>@vehicle.FromPlace</td>
+                        <td>@vehicle.FromState</td>
+                        <td>@vehicle.TripshtNo</td>
+                        <td>@vehicle.UserGSTINTransin</td>
+                        <td>@vehicle.EnteredDate</td>
+                        <td>@vehicle.TransMode</td>
+                        <td>@vehicle.TransDocNo</td>
+                        <td>@vehicle.TransDocDate</td>
+                        <td>@vehicle.GroupNo</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <p>No vehicle details found.</p>
+        }
+    </div>
+}
+else
+{
+    <p>No data found.</p>
+}
+
+<style>
+    .page-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .button-header {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .custom-header-btn {
+        padding: 8px 15px;
+        font-size: 1em;
+        border-radius: 5px;
+        background-color: #6c757d;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-header-btn:hover {
+            background-color: #5a6268;
+        }
+
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .custom-btn {
+        padding: 10px 20px;
+        font-size: 1.1em;
+        border-radius: 6px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s ease;
+        display: block;
+        width: 100%;
+    }
+
+        .custom-btn:hover {
+            background-color: #0056b3;
+        }
+
+    .details-container {
+        margin-top: 30px;
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+    }
+
+    .table-bordered th {
+        background-color: #f8f9fa;
+    }
+
+    .alert-info, .alert-danger {
+        text-align: center;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .alert-info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style>
+

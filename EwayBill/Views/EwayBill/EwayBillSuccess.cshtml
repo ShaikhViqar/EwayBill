@@ -1,0 +1,261 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+
+@model EwayBill.Models.EwayBillResponse
+
+@{
+    ViewBag.Title = "E-Way Bill Generated Successfully";
+}
+
+<h2 class="text-center my-4">E-Way Bill Generated Successfully</h2>
+
+<div class="button-header">
+    <a href="@Url.Action("Index", "EwayBill")" class="btn custom-header-btn">Back to Index</a>
+    <a href="@Url.Action("Generate", "EwayBill")" class="btn custom-header-btn">Generate E-Way Bill</a>
+    <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn custom-header-btn">Go to Details</a>
+    <a href="@Url.Action("ViewGenerateResponse", "EwayBill")" class="btn custom-header-btn">View Generate Response</a>
+    <a href="@Url.Action("ViewGenerateData", "EwayBill")" class="btn custom-header-btn">View All E-Way Bill</a>
+    <a href="@Url.Action("Authenticate", "EwayBill")" class="btn custom-header-btn">Authenticate</a>
+</div>
+
+
+
+@*<div class="card mt-3">
+        <div class="card-body">
+            <h3>Response Data:</h3>
+            <pre>@Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented))</pre>
+        </div>
+    </div>*@
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">E-Way Bill Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>E-Way Bill Document No</th>
+                <td>@Model.RequestData.DocNo</td>
+            </tr>
+            <tr>
+                <th>E-Way Bill No</th>
+                <td>@Model.Data.ewayBillNo</td>
+            </tr>
+            <tr>
+                <th>E-Way Bill Date</th>
+                <td>@Model.Data.EwayBillDate</td>
+            </tr>
+            <tr>
+                <th>E-Way Bill Valid Upto</th>
+                <td>@Model.Data.ValidUpto</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">E-Way Bill Request</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Supply Type:</th>
+                <td>@Model.RequestData.SupplyType</td>
+            </tr>
+            <tr>
+                <th>Sub Supply Type:</th>
+                <td>@Model.RequestData.SubSupplyType</td>
+            </tr>
+            <tr>
+                <th>Document Type:</th>
+                <td>@Model.RequestData.DocType</td>
+            </tr>
+            <tr>
+                <th>Document No:</th>
+                <td>@Model.RequestData.DocNo</td>
+            </tr>
+            <tr>
+                <th>Document Date:</th>
+                <td>@Model.RequestData.DocDate</td>
+            </tr>
+            <tr>
+                <th>From Gstin:</th>
+                <td>@Model.RequestData.FromGstin</td>
+            </tr>
+            <tr>
+                <th>From Trd Name:</th>
+                <td>@Model.RequestData.FromTrdName</td>
+            </tr>
+            <tr>
+                <th>From Addr1:</th>
+                <td>@Model.RequestData.FromAddr1</td>
+            </tr>
+            <tr>
+                <th>From Addr2:</th>
+                <td>@Model.RequestData.FromAddr2</td>
+            </tr>
+            <tr>
+                <th>From Place:</th>
+                <td>@Model.RequestData.FromPlace</td>
+            </tr>
+            <tr>
+                <th>Act From State Code:</th>
+                <td>@Model.RequestData.ActFromStateCode</td>
+            </tr>
+            <tr>
+                <th>From Pincode:</th>
+                <td>@Model.RequestData.FromPincode</td>
+            </tr>
+            <tr>
+                <th>From State Code:</th>
+                <td>@Model.RequestData.FromStateCode</td>
+            </tr>
+            <tr>
+                <th>To Gstin:</th>
+                <td>@Model.RequestData.ToGstin</td>
+            </tr>
+            <tr>
+                <th>To Trd Name:</th>
+                <td>@Model.RequestData.ToTrdName</td>
+            </tr>
+            <tr>
+                <th>To Addr1:</th>
+                <td>@Model.RequestData.ToAddr1</td>
+            </tr>
+            <tr>
+                <th>To Addr2:</th>
+                <td>@Model.RequestData.ToAddr2</td>
+            </tr>
+            <tr>
+                <th>To Place:</th>
+                <td>@Model.RequestData.ToPlace</td>
+            </tr>
+            <tr>
+                <th>To Pincode:</th>
+                <td>@Model.RequestData.ToPincode</td>
+            </tr>
+            <tr>
+                <th>Act To State Code:</th>
+                <td>@Model.RequestData.ActToStateCode</td>
+            </tr>
+            <tr>
+                <th>To State Code:</th>
+                <td>@Model.RequestData.ToStateCode</td>
+            </tr>
+            <tr>
+                <th>Transaction Type:</th>
+                <td>@Model.RequestData.TransactionType</td>
+            </tr>
+            <tr>
+                <th>Dispatch From GSTIN:</th>
+                <td>@Model.RequestData.DispatchFromGSTIN</td>
+            </tr>
+            <tr>
+                <th>Dispatch From Trade Name:</th>
+                <td>@Model.RequestData.DispatchFromTradeName</td>
+            </tr>
+            <tr>
+                <th>Ship To GSTIN:</th>
+                <td>@Model.RequestData.ShipToGSTIN</td>
+            </tr>
+            <tr>
+                <th>Ship To Trade Name:</th>
+                <td>@Model.RequestData.ShipToTradeName</td>
+            </tr>
+            <tr>
+                <th>Total Value:</th>
+                <td>@Model.RequestData.TotalValue</td>
+            </tr>
+            <tr>
+                <th>Cgst Value:</th>
+                <td>@Model.RequestData.CgstValue</td>
+            </tr>
+            <tr>
+                <th>Sgst Value:</th>
+                <td>@Model.RequestData.SgstValue</td>
+            </tr>
+            <tr>
+                <th>Igst Value:</th>
+                <td>@Model.RequestData.IgstValue</td>
+            </tr>
+            <tr>
+                <th>Cess Value:</th>
+                <td>@Model.RequestData.CessValue</td>
+            </tr>
+            <tr>
+                <th>Cess Non Advol Value:</th>
+                <td>@Model.RequestData.CessNonAdvolValue</td>
+            </tr>
+            <tr>
+                <th>Tot Inv Value:</th>
+                <td>@Model.RequestData.TotInvValue</td>
+            </tr>
+            <tr>
+                <th>Trans Mode:</th>
+                <td>@Model.RequestData.TransMode</td>
+            </tr>
+            <tr>
+                <th>Trans Distance</th>
+                <td>@Model.RequestData.TransDistance</td>
+            </tr>
+            <tr>
+                <th>Transporter Id</th>
+                <td>@Model.RequestData.TransporterId</td>
+            </tr>
+            <tr>
+                <th>Trans Doc No:</th>
+                <td>@Model.RequestData.TransDocNo</td>
+            </tr>
+            <tr>
+                <th>Vehicle No:</th>
+                <td>@Model.RequestData.VehicleNo</td>
+            </tr>
+            <tr>
+                <th>Vehicle Type:</th>
+                <td>@Model.RequestData.VehicleType</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th colspan="10" class="text-center">Item List</th>
+            </tr>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>HSN Code</th>
+                <th>Quantity</th>
+                <th>Quantity Unit</th>
+                <th>Taxable Amount</th>
+                <th>CGST Rate</th>
+                <th>SGST Rate</th>
+                <th>IGST Rate</th>
+                <th>Cess Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RequestData.ItemList)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductDesc</td>
+                    <td>@item.HsnCode</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.QtyUnit</td>
+                    <td>@item.TaxableAmount</td>
+                    <td>@item.CgstRate</td>
+                    <td>@item.SgstRate</td>
+                    <td>@item.IgstRate</td>
+                    <td>@item.CessRate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

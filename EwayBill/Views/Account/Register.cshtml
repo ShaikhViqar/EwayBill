@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+<body>
+    <h1>User Registration Form</h1>
+    <form id="registrationForm">
+        <!-- Personal Information -->
+        <h2>Personal Information</h2>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="userName">Username:</label><br>
+                <input type="text" id="userName" name="userName" required>
+                <div><span id="usernameError" style="color: red; display: none;"></span></div> <!-- Error message -->
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="phoneNumber">Phone Number:</label><br>
+                <input type="text" id="phoneNumber" name="phoneNumber">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="role">Role:</label><br>
+                <select id="role" name="role" required>
+                    <option value="">Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Super Admin">Super Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Editor">Editor</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a role.
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <br>
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="Other">
+                <label for="other">Other</label>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="dob">Date of Birth:</label><br>
+                <input type="date" id="dob" name="dateOfBirth">
+            </div>
+        </div>
+
+        <!-- Address Information -->
+        <h2>Address Information</h2>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="address">Address:</label><br>
+                <textarea id="address" name="address" rows="2" cols="30"></textarea>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="city">City:</label><br>
+                <input type="text" id="city" name="city">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="state">State:</label><br>
+                <input type="text" id="state" name="state">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="postalCode">Postal Code:</label><br>
+                <input type="text" id="postalCode" name="postalCode">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="country">Country:</label><br>
+                <input type="text" id="country" name="country">
+            </div>
+        </div>
+        <!-- Personal Interests as Checkboxes -->
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h2>Personal Interests</h2>
+                <label><strong>Select your interests:</strong></label><br>
+                <input type="checkbox" id="interest1" name="interests" value="Reading">
+                <label for="interest1">Reading</label><br>
+                <input type="checkbox" id="interest2" name="interests" value="Traveling">
+                <label for="interest2">Traveling</label><br>
+                <input type="checkbox" id="interest3" name="interests" value="Cooking">
+                <label for="interest3">Cooking</label><br>
+                <input type="checkbox" id="interest4" name="interests" value="Sports">
+                <label for="interest4">Sports</label><br>
+                <input type="checkbox" id="interest5" name="interests" value="Music">
+                <label for="interest5">Music</label><br>
+                <input type="checkbox" id="interest6" name="interests" value="Art">
+                <label for="interest6">Art</label><br>
+            </div>
+            <div class="col-md-4 mb-3">
+                <!-- Skills as Checkboxes -->
+                <h2>Skills</h2>
+                <label><strong>Select your skills:</strong></label><br>
+                <input type="checkbox" id="skill1" name="skills" value="JavaScript">
+                <label for="skill1">JavaScript</label><br>
+                <input type="checkbox" id="skill2" name="skills" value="C#">
+                <label for="skill2">C#</label><br>
+                <input type="checkbox" id="skill3" name="skills" value="HTML">
+                <label for="skill3">HTML</label><br>
+                <input type="checkbox" id="skill4" name="skills" value="CSS">
+                <label for="skill4">CSS</label><br>
+                <input type="checkbox" id="skill5" name="skills" value="Python">
+                <label for="skill5">Python</label><br>
+                <input type="checkbox" id="skill6" name="skills" value="SQL">
+                <label for="skill6">SQL</label><br>
+            </div>
+            <div class="col-md-4 mb-3">
+                <!-- Languages as Checkboxes -->
+                <h2>Languages</h2>
+                <label><strong>Select your languages:</strong></label><br>
+                <input type="checkbox" id="language1" name="languages" value="English">
+                <label for="language1">English</label><br>
+                <input type="checkbox" id="language2" name="languages" value="Hindi">
+                <label for="language2">Hindi</label><br>
+                <input type="checkbox" id="language3" name="languages" value="Marathi">
+                <label for="language3">Marathi</label><br>
+                <input type="checkbox" id="language4" name="languages" value="Urdu">
+                <label for="language4">Urdu</label><br>
+                <input type="checkbox" id="language5" name="languages" value="Arabic">
+                <label for="language5">Arabic</label><br>
+            </div>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    <div id="responseMessage"></div>
+    <script>
+$(document).ready(function() {
+    // Username check on change
+    $('#userName').on('change', function() {
+        var username = $(this).val();
+
+        // Clear the error message initially
+        $('#usernameError').text('').hide();
+
+        // Perform the AJAX request
+        $.getJSON('@Url.Action("CheckUsername", "Account")', { username: username }, function(data) {
+            if (!data) {
+                // Username is taken, show the error message
+                $('#usernameError').text('This username is already taken. Please choose a different one.').show();
+            } else {
+                // If the username is valid, hide the error message
+                $('#usernameError').text('').hide();
+            }
+        });
+    });
+
+    // Registration form submission
+    $('#registrationForm').submit(function(event) {
+        event.preventDefault();
+
+        // Check if the username is already taken before submission
+        if ($('#usernameError').is(':visible')) {
+            // If the error message is visible, prevent form submission
+            $('#responseMessage').text('Please choose a different username before proceeding.');
+            return;
+        }
+
+        var selectedInterests = [];
+        $('input[name="interests"]:checked').each(function() {
+            selectedInterests.push($(this).val());
+        });
+
+        var selectedSkills = [];
+        $('input[name="skills"]:checked').each(function() {
+            selectedSkills.push($(this).val());
+        });
+
+        var selectedLanguages = [];
+        $('input[name="languages"]:checked').each(function() {
+            selectedLanguages.push($(this).val());
+        });
+
+        var formData = {
+            FirstName: $('#firstName').val(),
+            LastName: $('#lastName').val(),
+            UserName: $('#userName').val(),
+            Password: $('#password').val(),
+            Email: $('#email').val(),
+            PhoneNumber: $('#phoneNumber').val(),
+            Role: $('#role').val(),
+            Gender: $('input[name="gender"]:checked').val(),
+            DateOfBirth: $('#dob').val(),
+            Address: $('#address').val(),
+            City: $('#city').val(),
+            State: $('#state').val(),
+            PostalCode: $('#postalCode').val(),
+            Country: $('#country').val(),
+            Hobbies: selectedInterests.join(', '),
+            Skills: selectedSkills.join(', '),
+            Languages: selectedLanguages.join(', ')
+        };
+
+        $.ajax({
+            url: '/Account/Register', // Adjust this to your actual endpoint
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response) {
+                if (response.redirectUrl) {
+                    window.location.href = response.redirectUrl;
+                } else {
+                    $('#responseMessage').text(response.message);
+                }
+            },
+            error: function() {
+                $('#responseMessage').text('Error occurred during registration.');
+            }
+        });
+    });
+});
+    </script>
+
+</body>
+</html>

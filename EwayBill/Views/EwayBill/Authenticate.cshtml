@@ -1,0 +1,145 @@
+﻿@*@model EwayBill.Models.AuthenticationRequest
+
+    @{
+        ViewBag.Title = "Authenticate";
+    }
+
+    <h2>Authenticate</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
+
+    @using (Html.BeginForm("Authenticate", "EwayBill", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div>
+            <button type="submit" class="btn btn-primary">Authenticate</button>
+        </div>
+
+        <div>
+            <a href="@Url.Action("Index", "EwayBill")" class="btn btn-secondary">Back to Index</a>
+        </div>
+
+        <div>
+            <a href="@Url.Action("Generate", "EwayBill")" class="btn btn-secondary">Generate E-Way Bill</a>
+        </div>
+
+        <div>
+            <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn btn-secondary">Go to Details</a>
+        </div>
+    }*@
+
+<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+
+@model EwayBill.Models.AuthenticationRequest
+
+@{
+    ViewBag.Title = "Authenticate";
+}
+
+<h2 class="text-center my-4">Authenticate</h2>
+
+<div class="button-header">
+    <a href="@Url.Action("Index", "EwayBill")" class="btn custom-header-btn">Back to Index</a>
+    <a href="@Url.Action("Generate", "EwayBill")" class="btn custom-header-btn">Generate E-Way Bill</a>
+    <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn custom-header-btn">Go to Details</a>
+    <a href="@Url.Action("ViewGenerateResponse", "EwayBill")" class="btn custom-header-btn">View Generate Response</a>
+    <a href="@Url.Action("ViewGenerateData", "EwayBill")" class="btn custom-header-btn">View All E-Way Bill</a>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <p class="alert alert-info">@ViewBag.Message</p>
+}
+
+<div class="auth-form-container">
+    @using (Html.BeginForm("Authenticate", "EwayBill", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+        <div class="form-group">
+            <button type="submit" class="btn custom-btn">Authenticate</button>
+        </div>
+    }
+</div>
+
+<style>
+    .page-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .button-header {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .custom-header-btn {
+        padding: 8px 15px;
+        font-size: 1em;
+        border-radius: 5px;
+        background-color: #6c757d;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-header-btn:hover {
+            background-color: #5a6268;
+        }
+
+    .auth-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .custom-btn {
+        padding: 10px 20px;
+        font-size: 1.1em;
+        border-radius: 6px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #0056b3;
+        }
+
+    .alert-info, .alert-danger {
+        text-align: center;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .alert-info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style>

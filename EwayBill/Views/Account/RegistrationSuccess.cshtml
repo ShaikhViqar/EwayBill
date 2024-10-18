@@ -1,0 +1,151 @@
+﻿@model List<EwayBill.Models.User>
+
+@using System.Collections.Generic;
+@using System.Linq;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Success</title>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+<body>
+    <h2 class="text-center my-4">Registration Successful!</h2>
+
+    @* Display welcome message for each user *@
+    @foreach (var user in Model)
+    {
+        <h2>Welcome, @user.FirstName @user.LastName</h2>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">User Details:</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <th>Username:</th>
+                        <td>@user.UserName</td>
+                    </tr>
+                    <tr>
+                        <th>Password:</th>
+                        <td>@user.Password</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>@user.Email</td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number:</th>
+                        <td>@user.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <th>Role:</th>
+                        <td>@user.Role</td>
+                    </tr>
+                    <tr>
+                        <th>Gender:</th>
+                        <td>
+                            <div>
+                                <input type="radio" id="male" name="gender" value="Male" @(string.Equals(user.Gender, "Male", StringComparison.OrdinalIgnoreCase) ? "checked" : "") />
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="Female" @(string.Equals(user.Gender, "Female", StringComparison.OrdinalIgnoreCase) ? "checked" : "") />
+                                <label for="female">Female</label>
+                                <input type="radio" id="other" name="gender" value="Other" @(string.Equals(user.Gender, "Other", StringComparison.OrdinalIgnoreCase) ? "checked" : "") />
+                                <label for="other">Other</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth:</th>
+                        <td>@user.DateOfBirth</td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td>@user.Address</td>
+                    </tr>
+                    <tr>
+                        <th>City:</th>
+                        <td>@user.City</td>
+                    </tr>
+                    <tr>
+                        <th>State:</th>
+                        <td>@user.State</td>
+                    </tr>
+                    <tr>
+                        <th>PostalCode:</th>
+                        <td>@user.PostalCode</td>
+                    </tr>
+                    <tr>
+                        <th>Country:</th>
+                        <td>@user.Country</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <h3>Your Hobbies:</h3>
+            @foreach (var user in Model)
+            {
+                var availableHobbies = new[] { "Reading", "Traveling", "Cooking", "Sports", "Music", "Art" };
+                var selectedHobbies = user.Hobbies?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
+                var selectedHobbiesList = new List<string>(selectedHobbies.Select(h => h.Trim()));
+
+                foreach (var hobby in availableHobbies)
+                {
+                    <div>
+                        <input type="checkbox" value="@hobby" @(selectedHobbiesList.Contains(hobby) ? "checked" : "") />
+                        <label>@hobby</label>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-4 mb-3">
+            <h3>Your Skills:</h3>
+            @foreach (var user in Model)
+            {
+                var availableSkills = new[] { "JavaScript", "C#", "HTML", "CSS", "Python", "SQL" };
+                var selectedSkills = user.Skills?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
+                var selectedSkillsList = new List<string>(selectedSkills.Select(s => s.Trim()));
+
+                foreach (var skill in availableSkills)
+                {
+                    <div>
+                        <input type="checkbox" value="@skill" @(selectedSkillsList.Contains(skill) ? "checked" : "") />
+                        <label>@skill</label>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-4 mb-3">
+            <h3>Your Languages:</h3>
+            @foreach (var user in Model)
+            {
+                var availableLanguages = new[] { "English", "Hindi", "Marathi", "Urdu", "Arabic" };
+                var selectedLanguages = user.Languages?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
+                var selectedLanguagesList = new List<string>(selectedLanguages.Select(l => l.Trim()));
+
+                foreach (var language in availableLanguages)
+                {
+                    <div>
+                        <input type="checkbox" value="@language" @(selectedLanguagesList.Contains(language) ? "checked" : "") />
+                        <label>@language</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <a href="/Account/Login">Go to Login</a>
+</body>
+</html>

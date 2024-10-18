@@ -1,0 +1,26 @@
+﻿@using EwayBill.Models
+@model List<CheckBoxOption>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Options</title>
+</head>
+<body>
+    <h1>Select Options</h1>
+    <form method="post" action="/CheckBoxOption/Submit">
+        <!-- Adjust action if needed -->
+        @foreach (var option in Model)
+        {
+            <div>
+                <input type="checkbox" name="selectedIds" value="@option.Id" @(option.IsChecked ? "checked" : "") />
+                <label>@option.OptionName</label>
+            </div>
+        }
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+

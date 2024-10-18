@@ -1,0 +1,115 @@
+﻿.form-control {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.remove-item {
+    margin-top: 10px;
+}
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+.button-header {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.custom-header-btn {
+    padding: 8px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    background-color: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .custom-header-btn:hover {
+        background-color: #5a6268;
+    }
+
+.auth-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.custom-btn {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+    .custom-btn:hover {
+        background-color: #0056b3;
+    }
+
+.alert-info, .alert-danger {
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.navbar-inverse {
+    display: none;
+}
+h2.text-center {
+    font-size: 60px;
+    margin-bottom: 60px;
+    background: cadetblue;
+    color: white;
+    border-radius: 20px;
+}
+.container.body-content {
+    background: aliceblue;
+    border: 1px solid #c5c5c5;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.mb-5 .row {
+    margin-bottom: 50px;
+}
+
+#usernameError {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}

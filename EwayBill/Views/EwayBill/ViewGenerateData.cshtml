@@ -1,0 +1,226 @@
+﻿<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+
+@model List<EwayBill.Models.EwayBillViewGenerateData>
+
+<h2 class="text-center my-4">E-Way Bill Details</h2>
+
+<div class="button-header">
+    <a href="@Url.Action("Index", "EwayBill")" class="btn custom-header-btn">Back to Index</a>
+    <a href="@Url.Action("ViewGenerateResponse", "EwayBill")" class="btn custom-header-btn">View Generate Response</a>
+    <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn custom-header-btn">Go to Details</a>
+    <a href="@Url.Action("Generate", "EwayBill")" class="btn custom-header-btn">Generate E-Way Bill</a>
+    <a href="@Url.Action("Authenticate", "EwayBill")" class="btn custom-header-btn">Authenticate</a>
+</div>
+
+@foreach (var ewayBill in Model)
+{
+    <div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">E-Way Bill Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Supply Type:</th>
+                        <td> @ewayBill.ParentData.SupplyType</td>
+                    </tr>
+                    <tr>
+                        <th>Sub Supply Type:</th>
+                        <td> @ewayBill.ParentData.SubSupplyType</td>
+                    </tr>
+                    <tr>
+                        <th>Document Type:</th>
+                        <td> @ewayBill.ParentData.DocType</td>
+                    </tr>
+                    <tr>
+                        <th>Document No:</th>
+                        <td> @ewayBill.ParentData.DocNo</td>
+                    </tr>
+                    <tr>
+                        <th>Document Date:</th>
+                        <td> @ewayBill.ParentData.DocDate</td>
+                    </tr>
+                    <tr>
+                        <th>From Gstin:</th>
+                        <td> @ewayBill.ParentData.FromGstin</td>
+                    </tr>
+                    <tr>
+                        <th>From Trd Name:</th>
+                        <td> @ewayBill.ParentData.FromTrdName</td>
+                    </tr>
+                    <tr>
+                        <th>From Addr1:</th>
+                        <td> @ewayBill.ParentData.FromAddr1</td>
+                    </tr>
+                    <tr>
+                        <th>From Addr2:</th>
+                        <td> @ewayBill.ParentData.FromAddr2</td>
+                    </tr>
+                    <tr>
+                        <th>From Place:</th>
+                        <td> @ewayBill.ParentData.FromPlace</td>
+                    </tr>
+                    <tr>
+                        <th>Act From State Code:</th>
+                        <td> @ewayBill.ParentData.ActFromStateCode</td>
+                    </tr>
+                    <tr>
+                        <th>From Pincode:</th>
+                        <td> @ewayBill.ParentData.FromPincode</td>
+                    </tr>
+                    <tr>
+                        <th>From State Code:</th>
+                        <td> @ewayBill.ParentData.FromStateCode</td>
+                    </tr>
+                    <tr>
+                        <th>To Gstin:</th>
+                        <td> @ewayBill.ParentData.ToGstin</td>
+                    </tr>
+                    <tr>
+                        <th>To Trd Name:</th>
+                        <td> @ewayBill.ParentData.ToTrdName</td>
+                    </tr>
+                    <tr>
+                        <th>To Addr1:</th>
+                        <td> @ewayBill.ParentData.ToAddr1</td>
+                    </tr>
+                    <tr>
+                        <th>To Addr2:</th>
+                        <td> @ewayBill.ParentData.ToAddr2</td>
+                    </tr>
+                    <tr>
+                        <th>To Place:</th>
+                        <td> @ewayBill.ParentData.ToPlace</td>
+                    </tr>
+                    <tr>
+                        <th>To Pincode:</th>
+                        <td> @ewayBill.ParentData.ToPincode</td>
+                    </tr>
+                    <tr>
+                        <th>Act To State Code:</th>
+                        <td> @ewayBill.ParentData.ActToStateCode</td>
+                    </tr>
+                    <tr>
+                        <th>To State Code:</th>
+                        <td> @ewayBill.ParentData.ToStateCode</td>
+                    </tr>
+                    <tr>
+                        <th>Transaction Type:</th>
+                        <td> @ewayBill.ParentData.TransactionType</td>
+                    </tr>
+                    <tr>
+                        <th>Dispatch From GSTIN:</th>
+                        <td> @ewayBill.ParentData.DispatchFromGSTIN</td>
+                    </tr>
+                    <tr>
+                        <th>Dispatch From Trade Name:</th>
+                        <td> @ewayBill.ParentData.DispatchFromTradeName</td>
+                    </tr>
+                    <tr>
+                        <th>Ship To GSTIN:</th>
+                        <td> @ewayBill.ParentData.ShipToGSTIN</td>
+                    </tr>
+                    <tr>
+                        <th>Ship To Trade Name:</th>
+                        <td> @ewayBill.ParentData.ShipToTradeName</td>
+                    </tr>
+                    <tr>
+                        <th>Total Value:</th>
+                        <td> @ewayBill.ParentData.TotalValue</td>
+                    </tr>
+                    <tr>
+                        <th>Cgst Value:</th>
+                        <td> @ewayBill.ParentData.CgstValue</td>
+                    </tr>
+                    <tr>
+                        <th>Sgst Value:</th>
+                        <td> @ewayBill.ParentData.SgstValue</td>
+                    </tr>
+                    <tr>
+                        <th>Igst Value:</th>
+                        <td> @ewayBill.ParentData.IgstValue</td>
+                    </tr>
+                    <tr>
+                        <th>Cess Value:</th>
+                        <td> @ewayBill.ParentData.CessValue</td>
+                    </tr>
+                    <tr>
+                        <th>Cess Non Advol Value:</th>
+                        <td> @ewayBill.ParentData.CessNonAdvolValue</td>
+                    </tr>
+                    <tr>
+                        <th>Tot Inv Value:</th>
+                        <td> @ewayBill.ParentData.TotInvValue</td>
+                    </tr>
+                    <tr>
+                        <th>Trans Mode:</th>
+                        <td> @ewayBill.ParentData.TransMode</td>
+                    </tr>
+                    <tr>
+                        <th>Trans Distance</th>
+                        <td> @ewayBill.ParentData.TransDistance</td>
+                    </tr>
+                    <tr>
+                        <th>Transporter Id</th>
+                        <td> @ewayBill.ParentData.TransporterId</td>
+                    </tr>
+                    <tr>
+                        <th>Trans Doc No:</th>
+                        <td> @ewayBill.ParentData.TransDocNo</td>
+                    </tr>
+                    <tr>
+                        <th>Vehicle No:</th>
+                        <td> @ewayBill.ParentData.VehicleNo</td>
+                    </tr>
+                    <tr>
+                        <th>Vehicle Type:</th>
+                        <td> @ewayBill.ParentData.VehicleType</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="10" class="text-center">Item List</th>
+                </tr>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>HSN Code</th>
+                    <th>Quantity</th>
+                    <th>Quantity Unit</th>
+                    <th>Taxable Amount</th>
+                    <th>CGST Rate</th>
+                    <th>SGST Rate</th>
+                    <th>IGST Rate</th>
+                    <th>Cess Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ewayBill.ItemList)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.ProductDesc</td>
+                        <td>@item.HsnCode</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.QtyUnit</td>
+                        <td>@item.TaxableAmount</td>
+                        <td>@item.CgstRate</td>
+                        <td>@item.SgstRate</td>
+                        <td>@item.IgstRate</td>
+                        <td>@item.CessRate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>}
+

@@ -1,0 +1,98 @@
+﻿@*@{
+        ViewBag.Title = "E-Way Bill Management";
+    }
+
+    <h2>E-Way Bill Management</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="@Url.Action("Generate", "EwayBill")" class="btn btn-primary btn-block">Generate E-Way Bill</a>
+            </div>
+            <div class="col-md-4">
+                <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn btn-secondary btn-block">Get E-Way Bill Details</a>
+            </div>
+            <div class="col-md-4">
+                <a href="@Url.Action("Authenticate", "EwayBill")" class="btn btn-secondary btn-block">Authenticate</a>
+            </div>
+        </div>
+    </div>*@
+
+<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+@{
+    ViewBag.Title = "E-Way Bill Management";
+}
+
+<h2 class="text-center my-4">E-Way Bill Management</h2>
+
+<div class="container eway-bill-container">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="@Url.Action("Generate", "EwayBill")" class="btn btn-common btn-lg btn-block custom-btn">Generate E-Way Bill</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn btn-common btn-lg btn-block custom-btn">Get E-Way Bill Details</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("ViewGenerateResponse", "EwayBill")" class="btn btn-common btn-lg btn-block custom-btn">View Generate Response</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="@Url.Action("ViewGenerateData", "EwayBill")" class="btn btn-common btn-lg btn-block custom-btn">View All E-Way Bill</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("Register", "Account")" class="btn btn-common btn-lg btn-block custom-btn">Register User</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("Authenticate", "EwayBill")" class="btn btn-common btn-lg btn-block custom-btn">Authenticate</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .eway-bill-container {
+        margin-top: 50px;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .custom-btn {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+        .custom-btn:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-common {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+</style>
+
+

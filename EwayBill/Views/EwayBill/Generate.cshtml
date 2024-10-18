@@ -1,0 +1,877 @@
+﻿@*@model EwayBill.Models.EwayBillRequest
+
+    @{
+        ViewBag.Title = "Generate E-Way Bill";
+    }
+
+    @using Newtonsoft.Json
+    @using Newtonsoft.Json.Serialization
+
+    <h2>Generate E-Way Bill</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>}
+
+    @if (ViewBag.ResponseData != null)
+    {
+        <div>
+            <h3>Response Data:</h3>
+            <pre>@Html.Raw(JsonConvert.SerializeObject(ViewBag.ResponseData, Formatting.Indented))</pre>
+        </div>}
+
+    <div>
+        <a href="@Url.Action("Index", "EwayBill")" class="btn btn-secondary">Back to Index</a>
+    </div>
+
+    <div>
+        <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn btn-secondary">Go to Details</a>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Authenticate", "EwayBill")" class="btn btn-secondary">Authenticate</a>
+    </div>
+
+    @using (Html.BeginForm("Generate", "EwayBill", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div>
+            <label>Supply Type:</label>
+            @Html.TextBoxFor(m => m.SupplyType, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Sub Supply Type:</label>
+            @Html.TextBoxFor(m => m.SubSupplyType, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Document Type:</label>
+            @Html.TextBoxFor(m => m.DocType, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Document Number:</label>
+            @Html.TextBoxFor(m => m.DocNo, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Document Date:</label>
+            @Html.TextBoxFor(m => m.DocDate, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From GSTIN:</label>
+            @Html.TextBoxFor(m => m.FromGstin, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From Trader Name:</label>
+            @Html.TextBoxFor(m => m.FromTrdName, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From Address 1:</label>
+            @Html.TextBoxFor(m => m.FromAddr1, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From Address 2:</label>
+            @Html.TextBoxFor(m => m.FromAddr2, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From Place:</label>
+            @Html.TextBoxFor(m => m.FromPlace, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Act From State Code:</label>
+            @Html.TextBoxFor(m => m.ActFromStateCode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From Pincode:</label>
+            @Html.TextBoxFor(m => m.FromPincode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>From State Code:</label>
+            @Html.TextBoxFor(m => m.FromStateCode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To GSTIN:</label>
+            @Html.TextBoxFor(m => m.ToGstin, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To Trader Name:</label>
+            @Html.TextBoxFor(m => m.ToTrdName, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To Address 1:</label>
+            @Html.TextBoxFor(m => m.ToAddr1, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To Address 2:</label>
+            @Html.TextBoxFor(m => m.ToAddr2, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To Place:</label>
+            @Html.TextBoxFor(m => m.ToPlace, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To Pincode:</label>
+            @Html.TextBoxFor(m => m.ToPincode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Act To State Code:</label>
+            @Html.TextBoxFor(m => m.ActToStateCode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>To State Code:</label>
+            @Html.TextBoxFor(m => m.ToStateCode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Transaction Type:</label>
+            @Html.TextBoxFor(m => m.TransactionType, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Dispatch From GSTIN:</label>
+            @Html.TextBoxFor(m => m.DispatchFromGSTIN, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Dispatch From Trade Name:</label>
+            @Html.TextBoxFor(m => m.DispatchFromTradeName, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Ship To GSTIN:</label>
+            @Html.TextBoxFor(m => m.ShipToGSTIN, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Ship To Trade Name:</label>
+            @Html.TextBoxFor(m => m.ShipToTradeName, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Total Value:</label>
+            @Html.TextBoxFor(m => m.TotalValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>CGST Value:</label>
+            @Html.TextBoxFor(m => m.CgstValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>SGST Value:</label>
+            @Html.TextBoxFor(m => m.SgstValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>IGST Value:</label>
+            @Html.TextBoxFor(m => m.IgstValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Cess Value:</label>
+            @Html.TextBoxFor(m => m.CessValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Cess Non-Advol Value:</label>
+            @Html.TextBoxFor(m => m.CessNonAdvolValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Total Invoice Value:</label>
+            @Html.TextBoxFor(m => m.TotInvValue, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Transport Mode:</label>
+            @Html.TextBoxFor(m => m.TransMode, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Transport Distance:</label>
+            @Html.TextBoxFor(m => m.TransDistance, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Transporter ID:</label>
+            @Html.TextBoxFor(m => m.TransporterId, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Transport Document No:</label>
+            @Html.TextBoxFor(m => m.TransDocNo, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Vehicle No:</label>
+            @Html.TextBoxFor(m => m.VehicleNo, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <label>Vehicle Type:</label>
+            @Html.TextBoxFor(m => m.VehicleType, new { @class = "form-control" })
+        </div>
+
+        <h3>Item Details</h3>
+        <div id="item-container">
+            @for (int i = 0; i < Model.ItemList.Count; i++)
+            {
+                <div class="item-row">
+                    <h4>Item @i</h4>
+                    <div>
+                        <label>Product Name:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].ProductName, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Product Description:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].ProductDesc, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>HSN Code:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].HsnCode, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Quantity:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].Quantity, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Quantity Unit:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].QtyUnit, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Taxable Amount:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].TaxableAmount, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>CGST Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].CgstRate, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>SGST Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].SgstRate, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>IGST Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].IgstRate, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Cess Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].CessRate, new { @class = "form-control" })
+                    </div>
+                    <button type="button" class="btn btn-danger remove-item">Remove Item</button>
+                </div>
+            }
+        </div>
+        <button type="button" class="btn btn-success" id="add-item">Add Item</button>
+        <div>
+            <button type="submit" class="btn btn-primary">Generate E-Way Bill</button>
+        </div>
+    }
+
+    @section Scripts {
+        <script>
+            $(document).ready(function() {
+                var itemIndex = @Model.ItemList.Count;
+
+                $('#add-item').click(function() {
+                    var itemHtml = `
+                        <div class="item-row">
+                            <h4>Item ` + itemIndex + `</h4>
+                            <div>
+                                <label>Product Name:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].ProductName" class="form-control" />
+                            </div>
+                            <div>
+                                <label>Product Description:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].ProductDesc" class="form-control" />
+                            </div>
+                            <div>
+                                <label>HSN Code:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].HsnCode" class="form-control" />
+                            </div>
+                            <div>
+                                <label>Quantity:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].Quantity" class="form-control" />
+                            </div>
+                            <div>
+                                <label>Quantity Unit:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].QtyUnit" class="form-control" />
+                            </div>
+                            <div>
+                                <label>Taxable Amount:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].TaxableAmount" class="form-control" />
+                            </div>
+                            <div>
+                                <label>CGST Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].CgstRate" class="form-control" />
+                            </div>
+                            <div>
+                                <label>SGST Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].SgstRate" class="form-control" />
+                            </div>
+                            <div>
+                                <label>IGST Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].IgstRate" class="form-control" />
+                            </div>
+                            <div>
+                                <label>Cess Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].CessRate" class="form-control" />
+                            </div>
+                            <button type="button" class="btn btn-danger remove-item">Remove Item</button>
+                        </div>
+                    `;
+                    $('#item-container').append(itemHtml);
+                    itemIndex++;
+                });
+
+                $(document).on('click', '.remove-item', function() {
+                    $(this).closest('.item-row').remove();
+                });
+            });
+        </script>
+    }*@
+
+<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+@model EwayBill.Models.EwayBillRequest
+@{
+    ViewBag.Title = "Generate E-Way Bill";
+}
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+<h2 class="text-center my-4">Generate E-Way Bill</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+@*@if (ViewBag.ResponseData != null)
+    {
+        <div class="card mt-3">
+            <div class="card-body">
+                <h3>Response Data:</h3>
+                <pre>@Html.Raw(JsonConvert.SerializeObject(ViewBag.ResponseData, Formatting.Indented))</pre>
+            </div>
+        </div>
+    }*@
+
+<div class="button-header">
+    <a href="@Url.Action("Index", "EwayBill")" class="btn custom-header-btn">Back to Index</a>
+    <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn custom-header-btn">Go to Details</a>
+    <a href="@Url.Action("ViewGenerateResponse", "EwayBill")" class="btn custom-header-btn">View Generate Response</a>
+    <a href="@Url.Action("ViewGenerateData", "EwayBill")" class="btn custom-header-btn">View All E-Way Bill</a>
+    <a href="@Url.Action("Authenticate", "EwayBill")" class="btn custom-header-btn">Authenticate</a>
+</div>
+
+@using (Html.BeginForm("Generate", "EwayBill", FormMethod.Post, new { @class = "mb-5" }))
+{
+    //@Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Supply Type:</label>
+            @*<input type="text" required>*@
+            @*@Html.TextBoxFor(m => m.SupplyType, new { @class = "form-control" })*@
+            @Html.TextBoxFor(m => m.SupplyType, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.SupplyType, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Sub Supply Type:</label>
+            @Html.TextBoxFor(m => m.SubSupplyType, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.SubSupplyType, "", new { @class = "text-danger" })
+        </div>
+
+        @*<div class="col-md-4 mb-3">
+                <label>Document Type:</label>
+                @Html.TextBoxFor(m => m.DocType, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.DocType, "", new { @class = "text-danger" })
+            </div>*@
+        @*<div class="col-md-4 mb-3">
+                <label>Document Type:</label>
+                @Html.DropDownListFor(m => m.DocType, new SelectList(new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Tax Invoice", Value = "INV" },
+                    new SelectListItem { Text = "Bill of Supply", Value = "BIL" },
+                    new SelectListItem { Text = "Bill of Entry", Value = "BOE" },
+                    new SelectListItem { Text = "Delivery Challan", Value = "CHL" },
+                    new SelectListItem { Text = "Credit Note", Value = "CNT" },
+                    new SelectListItem { Text = "Others", Value = "OTH" }
+                }, "Value", "Text"), new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.DocType, "", new { @class = "text-danger" })
+            </div>*@
+        <div class="col-md-4 mb-3">
+            <label>Document Type:</label>
+            @Html.DropDownListFor(m => m.DocType, new SelectList(Model.DocumentTypes, "Value", "Text"),
+                                  "Select Document Type", new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.DocType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Document Number:</label>
+            @Html.TextBoxFor(m => m.DocNo, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.DocNo, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Document Date:</label>
+            @*@Html.TextBoxFor(m => m.DocDate, new { @class = "form-control", required = "required" })*@
+            @Html.TextBoxFor(m => m.DocDate, new { @class = "form-control", type = "date", required = "required" })
+            @Html.ValidationMessageFor(model => model.DocDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>From GSTIN:</label>
+            @Html.TextBoxFor(m => m.FromGstin, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromGstin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>From Trader Name:</label>
+            @Html.TextBoxFor(m => m.FromTrdName, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromTrdName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>From Address 1:</label>
+            @Html.TextBoxFor(m => m.FromAddr1, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromAddr1, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>From Address 2:</label>
+            @Html.TextBoxFor(m => m.FromAddr2, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromAddr2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>From Place:</label>
+            @Html.TextBoxFor(m => m.FromPlace, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromPlace, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Act From State Code:</label>
+            @Html.TextBoxFor(m => m.ActFromStateCode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ActFromStateCode, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>From Pincode:</label>
+            @Html.TextBoxFor(m => m.FromPincode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromPincode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>From State Code:</label>
+            @Html.TextBoxFor(m => m.FromStateCode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.FromStateCode, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>To GSTIN:</label>
+            @Html.TextBoxFor(m => m.ToGstin, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToGstin, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>To Trader Name:</label>
+            @Html.TextBoxFor(m => m.ToTrdName, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToTrdName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>To Address 1:</label>
+            @Html.TextBoxFor(m => m.ToAddr1, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToAddr1, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>To Address 2:</label>
+            @Html.TextBoxFor(m => m.ToAddr2, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToAddr2, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>To Place:</label>
+            @Html.TextBoxFor(m => m.ToPlace, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToPlace, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>To Pincode:</label>
+            @Html.TextBoxFor(m => m.ToPincode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToPincode, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Act To State Code:</label>
+            @Html.TextBoxFor(m => m.ActToStateCode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ActToStateCode, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>To State Code:</label>
+            @Html.TextBoxFor(m => m.ToStateCode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ToStateCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        @*<div class="col-md-4 mb-3">
+                <label>Transaction Type:</label>
+                @Html.TextBoxFor(m => m.TransactionType, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
+            </div>*@
+        <div class="col-md-4 mb-3">
+            <label>Transaction Type:</label>
+            @Html.DropDownListFor(m => m.TransactionType, new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Online", Value = "1" },
+                new SelectListItem { Text = "Offline", Value = "2" }
+            }, "Value", "Text"), new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Dispatch From GSTIN:</label>
+            @Html.TextBoxFor(m => m.DispatchFromGSTIN, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.DispatchFromGSTIN, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Dispatch From Trade Name:</label>
+            @Html.TextBoxFor(m => m.DispatchFromTradeName, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.DispatchFromTradeName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Ship To GSTIN:</label>
+            @Html.TextBoxFor(m => m.ShipToGSTIN, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ShipToGSTIN, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Ship To Trade Name:</label>
+            @Html.TextBoxFor(m => m.ShipToTradeName, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ShipToTradeName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Total Value:</label>
+            @Html.TextBoxFor(m => m.TotalValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TotalValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>CGST Value:</label>
+            @Html.TextBoxFor(m => m.CgstValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.CgstValue, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>SGST Value:</label>
+            @Html.TextBoxFor(m => m.SgstValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.SgstValue, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>IGST Value:</label>
+            @Html.TextBoxFor(m => m.IgstValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.IgstValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Cess Value:</label>
+            @Html.TextBoxFor(m => m.CessValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.CessValue, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Cess Non-Advol Value:</label>
+            @Html.TextBoxFor(m => m.CessNonAdvolValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.CessNonAdvolValue, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Total Invoice Value:</label>
+            @Html.TextBoxFor(m => m.TotInvValue, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TotInvValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Transport Mode:</label>
+            @Html.TextBoxFor(m => m.TransMode, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TransMode, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Transport Distance:</label>
+            @Html.TextBoxFor(m => m.TransDistance, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TransDistance, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Transporter ID:</label>
+            @Html.TextBoxFor(m => m.TransporterId, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TransporterId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Transport Document No:</label>
+            @Html.TextBoxFor(m => m.TransDocNo, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.TransDocNo, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Vehicle No:</label>
+            @Html.TextBoxFor(m => m.VehicleNo, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.VehicleNo, "", new { @class = "text-danger" })
+        </div>
+
+        @*<div class="col-md-4 mb-3">
+                <label>Vehicle Type:</label>
+                @Html.TextBoxFor(m => m.VehicleType, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
+            </div>*@
+
+        <div class="col-md-4 mb-3">
+            <label>Vehicle Type:</label><br />
+            @Html.RadioButtonFor(m => m.VehicleType, "R", new { id = "vehicleTypeRegular", @required = "required" }) Regular<br />
+            @Html.RadioButtonFor(m => m.VehicleType, "O", new { id = "vehicleTypeODC", @required = "required" }) ODC<br />
+            @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <h3 class="my-4">Item Details</h3>
+    <div id="item-container" class="card p-3">
+        @for (int i = 0; i < Model.ItemList.Count; i++)
+        {
+            <div class="item-row mb-4 p-3 border">
+                <h4>Item @i</h4>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>Product Name:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].ProductName, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].ProductName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Product Description:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].ProductDesc, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].ProductDesc, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>HSN Code:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].HsnCode, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].HsnCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>Quantity:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].Quantity, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].Quantity, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Quantity Unit:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].QtyUnit, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].QtyUnit, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Taxable Amount:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].TaxableAmount, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].TaxableAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>CGST Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].CgstRate, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].CgstRate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>SGST Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].SgstRate, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].SgstRate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>IGST Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].IgstRate, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].IgstRate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>Cess Rate:</label>
+                        @Html.TextBoxFor(m => m.ItemList[i].CessRate, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ItemList[i].CessRate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-danger remove-item">Remove Item</button>
+            </div>
+        }
+    </div>
+    <div class="button-container mb-4">
+        <button type="button" class="btn btn-success" id="add-item">Add Item</button>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Generate E-Way Bill</button>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var itemIndex = @Model.ItemList.Count;
+
+            // Function to update the indices of the items
+            function updateIndices() {
+                $('#item-container .item-row').each(function (index) {
+                    $(this).find('h4').text('Item ' + (index + 1));
+                    $(this).find('input').each(function () {
+                        var name = $(this).attr('name');
+                        $(this).attr('name', name.replace(/ItemList\[\d+\]/, 'ItemList[' + index + ']'));
+                    });
+                });
+                itemIndex = $('#item-container .item-row').length;
+            }
+
+            $('#add-item').click(function () {
+                var itemHtml = `
+                    <div class="item-row mb-4 p-3 border">
+                        <h4>Item ` + (itemIndex + 1) + `</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label>Product Name:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].ProductName" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Product Description:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].ProductDesc" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>HSN Code:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].HsnCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label>Quantity:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].Quantity" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Quantity Unit:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].QtyUnit" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>Taxable Amount:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].TaxableAmount" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label>CGST Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].CgstRate" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>SGST Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].SgstRate" class="form-control" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label>IGST Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].IgstRate" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label>Cess Rate:</label>
+                                <input type="text" name="ItemList[` + itemIndex + `].CessRate" class="form-control" />
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger remove-item">Remove Item</button>
+                    </div>
+                `;
+                $('#item-container').append(itemHtml);
+                itemIndex++;
+            });
+
+            $(document).on('click', '.remove-item', function () {
+                $(this).closest('.item-row').remove();
+                updateIndices();
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        // Function to update Total Invoice Value
+        function updateTotalInvoiceValue() {
+        const totalValue = parseFloat($('#TotalValue').val()) || 0;
+        const cgstValue = parseFloat($('#CgstValue').val()) || 0;
+        const sgstValue = parseFloat($('#SgstValue').val()) || 0;
+        const igstValue = parseFloat($('#IgstValue').val()) || 0;
+        const cessValue = parseFloat($('#CessValue').val()) || 0;
+        const cessNonAdvolValue = parseFloat($('#CessNonAdvolValue').val()) || 0;
+
+        const totalInvoiceValue = totalValue + cgstValue + sgstValue + igstValue + cessValue + cessNonAdvolValue;
+        $('#TotInvValue').val(totalInvoiceValue.toFixed(2)); // Update Total Invoice Value
+        }
+
+        // Attach change event to input fields
+        $('#TotalValue, #CgstValue, #SgstValue, #IgstValue, #CessValue, #CessNonAdvolValue').on('input', updateTotalInvoiceValue);
+        });
+    </script>
+}

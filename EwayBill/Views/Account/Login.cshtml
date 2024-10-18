@@ -1,0 +1,32 @@
+﻿<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+
+@model EwayBill.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2 class="text-center my-4">Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+}
+
+@Html.ValidationSummary()

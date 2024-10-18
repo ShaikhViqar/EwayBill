@@ -1,0 +1,104 @@
+﻿@*@{
+        ViewBag.Title = "ViewGenerateResponse";
+    }
+
+    <h2>ViewGenerateResponse</h2>*@
+
+@model List<EwayBill.Models.EwayBillResponse>
+
+<head>
+    <link rel="stylesheet" href="~/Content/Custom.css">
+</head>
+
+<h2 class="text-center my-4">E-Way Bill Responses</h2>
+
+<div class="button-header">
+    <a href="@Url.Action("Index", "EwayBill")" class="btn custom-header-btn">Back to Index</a>
+    <a href="@Url.Action("Generate", "EwayBill")" class="btn custom-header-btn">Generate E-Way Bill</a>
+    <a href="@Url.Action("EwayBillDetails", "EwayBill")" class="btn custom-header-btn">Go to Details</a>
+    <a href="@Url.Action("ViewGenerateData", "EwayBill")" class="btn custom-header-btn">View All E-Way Bill</a>
+    <a href="@Url.Action("Authenticate", "EwayBill")" class="btn custom-header-btn">Authenticate</a>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="details-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>E-Way Bill Document Number</th>
+                    <th>E-Way Bill Number</th>
+                    <th>E-Way Bill Date</th>
+                    <th>Validate Upto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ewayBillResponse in Model)
+                {
+                    foreach (var item in ewayBillResponse.DataResponse)
+                    {
+                        <tr>
+                            @*<td>@item.DocNo</td>*@
+                            <td>
+                                <a href="@Url.Action("ViewGenerateData", "EwayBill", new { DocNo = item.DocNo })">@item.DocNo</a>
+                            </td>
+                            <td>@item.ewayBillNo</td>
+                            <td>@item.EwayBillDate</td>
+                            <td>@item.ValidUpto</td>
+                        </tr>
+                    }
+                }
+                @*<tr>
+                        <td colspan="4">
+                            <div class="pagination-controls">
+                                @if (ViewBag.PageNumber > 1)
+                                {
+                                    <a href="@Url.Action("ViewGenerateResponse", new { pageNumber = ViewBag.PageNumber - 1, pageSize = ViewBag.PageSize })" class="btn btn-primary">Previous</a>}
+
+                                Page @ViewBag.PageNumber
+
+                                @if (Model != null && Model.Count == ViewBag.PageSize)
+                                {
+                                    <a href="@Url.Action("ViewGenerateResponse", new { pageNumber = ViewBag.PageNumber + 1, pageSize = ViewBag.PageSize })" class="btn btn-primary">Next</a>}
+                            </div>
+                        </td>
+                    </tr>*@
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination-controls text-center">
+        <!-- Page Size Dropdown -->
+        <form method="get" action="@Url.Action("ViewGenerateResponse", "EwayBill")">
+            <label for="pageSize">Page Size:</label>
+            <select id="pageSize" name="pageSize" onchange="this.form.submit()">
+                <option value="5" @(ViewBag.PageSize == 5 ? "selected" : "")>5</option>
+                <option value="10" @(ViewBag.PageSize == 10 ? "selected" : "")>10</option>
+                <option value="20" @(ViewBag.PageSize == 20 ? "selected" : "")>20</option>
+                <option value="50" @(ViewBag.PageSize == 50 ? "selected" : "")>50</option>
+            </select>
+            <input type="hidden" name="pageNumber" value="@ViewBag.PageNumber" />
+        </form>
+
+        <!-- Pagination Links -->
+        <div class="pagination-buttons">
+            @if (ViewBag.PageNumber > 1)
+            {
+                <a href="@Url.Action("ViewGenerateResponse", new { pageNumber = 1, pageSize = ViewBag.PageSize })" class="btn btn-primary">First</a>
+                <a href="@Url.Action("ViewGenerateResponse", new { pageNumber = ViewBag.PageNumber - 1, pageSize = ViewBag.PageSize })" class="btn btn-primary">Previous</a>}
+
+            Page @ViewBag.PageNumber of @ViewBag.TotalPages
+
+            @if (Model.Count == ViewBag.PageSize)
+            {
+                <a href="@Url.Action("ViewGenerateResponse", new { pageNumber = ViewBag.PageNumber + 1, pageSize = ViewBag.PageSize })" class="btn btn-primary">Next</a>
+                <a href="@Url.Action("ViewGenerateResponse", new { pageNumber = ViewBag.TotalPages, pageSize = ViewBag.PageSize })" class="btn btn-primary">Last</a>}
+        </div>
+    </div>
+}
+else
+{
+    <p>No data found.</p>
+}
+
+
