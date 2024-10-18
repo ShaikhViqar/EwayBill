@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropzone File Upload</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+  <style>
+    /* Optional: Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    #myDropzone {
+      border: 2px dashed #007bff;
+      padding: 20px;
+      background: #fff;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Upload Files</h1>
+  <form action="/Account/UploadFile" class="dropzone" id="myDropzone">
+    <div class="dz-message" data-dz-message><span>Drop files here or click to upload.</span></div>
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+  <script>
+    Dropzone.options.myDropzone = {
+    paramName: "file", // The name that will be used to transfer the file
+    maxFilesize: 2, // Maximum file size in MB
+    acceptedFiles: ".jpg,.png,.pdf", // Accept specific file types
+    success: function (file, response) {
+    // Handle successful upload
+    console.log("File uploaded successfully:", response);
+    },
+    error: function (file, response) {
+    // Handle errors
+    console.log("File upload failed:", response);
+    }
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Manage Role</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="AdminLTE 4 | General Form Elements">
+  <meta name="author" content="ColorlibHQ">
+  <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
+  <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css" integrity="sha256-dSokZseQNT08wYEWiz5iLI8QPlKxG+TswNRD8k35cpg=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../../../dist/css/adminlte.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .toast {
+      opacity: 0.95;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+      border-radius: 8px; /* Rounded corners */
+      padding: 1rem; /* Increase padding */
+    }
+
+    /* Success toast color */
+    .bg-success {
+      background-color: #28a745 !important;
+    }
+
+    /* Error (danger) toast color */
+    .bg-danger {
+      background-color: #dc3545 !important;
+    }
+
+    /* Make text a bit larger for better readability */
+    .toast-body {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* Center the close button vertically */
+    .btn-close {
+      position: relative;
+      top: -4px;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Hide spinner controls in Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  </style>
+</head>
+
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <div class="app-wrapper">
+    <nav class="app-header navbar navbar-expand bg-body">
+      <div class="container-fluid">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"> <a class="nav-link" data-widget="navbar-search" href="#" role="button"> <i class="bi bi-search"></i> </a> </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-chat-text"></i> <span class="navbar-badge badge text-bg-danger">3</span> </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <a href="#" class="dropdown-item">
+                <div class="d-flex">
+                  <div class="flex-shrink-0"> <img src="../../../dist/assets/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3"> </div>
+                  <div class="flex-grow-1">
+                    <h3 class="dropdown-item-title">
+                      Brad Diesel
+                      <span class="float-end fs-7 text-danger"><i class="bi bi-star-fill"></i></span>
+                    </h3>
+                    <p class="fs-7">Call me whenever you can...</p>
+                    <p class="fs-7 text-secondary">
+                      <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
+                <div class="d-flex">
+                  <div class="flex-shrink-0"> <img src="../../../dist/assets/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3"> </div>
+                  <div class="flex-grow-1">
+                    <h3 class="dropdown-item-title">
+                      John Pierce
+                      <span class="float-end fs-7 text-secondary"> <i class="bi bi-star-fill"></i> </span>
+                    </h3>
+                    <p class="fs-7">I got your message bro</p>
+                    <p class="fs-7 text-secondary">
+                      <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
+                <div class="d-flex">
+                  <div class="flex-shrink-0"> <img src="../../../dist/assets/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3"> </div>
+                  <div class="flex-grow-1">
+                    <h3 class="dropdown-item-title">
+                      Nora Silvester
+                      <span class="float-end fs-7 text-warning"> <i class="bi bi-star-fill"></i> </span>
+                    </h3>
+                    <p class="fs-7">The subject goes here</p>
+                    <p class="fs-7 text-secondary">
+                      <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-bell-fill"></i> <span class="navbar-badge badge text-bg-warning">15</span> </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <span class="dropdown-item dropdown-header">15 Notifications</span>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
+                <i class="bi bi-envelope me-2"></i> 4 new messages
+                <span class="float-end text-secondary fs-7">3 mins</span>
+              </a>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
+                <i class="bi bi-people-fill me-2"></i> 8 friend requests
+                <span class="float-end text-secondary fs-7">12 hours</span>
+              </a>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item">
+                <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
+                <span class="float-end text-secondary fs-7">2 days</span>
+              </a>
+              <div class="dropdown-divider"></div> <a href="#" class="dropdown-item dropdown-footer">
+                See All Notifications
+              </a>
+            </div>
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="#" data-lte-toggle="fullscreen"> <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i> <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none;"></i> </a> </li> <!--end::Fullscreen Toggle--> <!--begin::User Menu Dropdown-->
+          <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img src="../../../dist/assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline">Alexander Pierce</span> </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <li class="user-header text-bg-primary">
+                <img src="../../../dist/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image">
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2023</small>
+                </p>
+              </li>
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-4 text-center"> <a href="#">Followers</a> </div>
+                  <div class="col-4 text-center"> <a href="#">Sales</a> </div>
+                  <div class="col-4 text-center"> <a href="#">Friends</a> </div>
+                </div>
+              </li>
+              <li class="user-footer"> <a href="#" class="btn btn-default btn-flat">Profile</a> <a href="#" class="btn btn-default btn-flat float-end">Sign out</a> </li> <!--end::Menu Footer-->
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+      <div class="sidebar-brand"> <a href="../index.html" class="brand-link"> <img src="../../../dist/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow"> <!--end::Brand Image--> <!--begin::Brand Text--> <span class="brand-text fw-light">AdminLTE 4</span> <!--end::Brand Text--> </a> <!--end::Brand Link--> </div> <!--end::Sidebar Brand--> <!--begin::Sidebar Wrapper-->
+      <div class="sidebar-wrapper">
+        <nav class="mt-2">
+          <!--begin::Sidebar Menu-->
+          <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-box-seam-fill"></i>
+                <p>
+                  Masters
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageRole.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageRole</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageState.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageState</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageCity.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageCity</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/Admin/dist/pages/Users/ManageUsers.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Manage Users</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/Admin/dist/pages/EwayBill/BillShow.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Bill Show</p>
+              </a>
+            </li>
+          </ul> <!--end::Sidebar Menu-->
+        </nav>
+      </div>
+
+      <!--end::Sidebar Wrapper-->
+    </aside> <!--end::Sidebar--> <!--begin::App Main-->
+    <main class="app-main">
+      <div class="app-content-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <h3 class="mb-0">ManageState</h3>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-end">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  ManageState
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="container-fluid">
+          <div class="row g-6">
+
+            <div class="col-md-4">
+              <div class="card card-primary card-outline mb-4">
+                <div class="card-header">
+                  <div class="card-title">Add State</div>
+                </div>
+                <form id="manageStateForm" method="post" action="/Masters/SaveManageState">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="statecode" class="form-label">State Code</label>
+                      <input type="number" class="form-control" id="statecode" name="StateCode" placeholder="Enter State Code" required>
+                      <div><span id="statecodeError" style="color: red; display: none;"></span></div>
+                      <div class="valid-feedback">Looks good!</div>
+                      <label for="state" class="form-label">State</label>
+                      <input type="text" class="form-control" id="state" name="State" placeholder="Enter State" required>
+                      <div><span id="stateError" style="color: red; display: none;"></span></div>
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <input type="hidden" id="stateID" name="StateID">
+                    <input type="hidden" id="userID" name="UserID" value="1">
+                  </div>
+                  <div class="card-footer">
+                    <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                    <button type="button" id="cancelButton" class="btn btn-secondary" style="display: none;">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <!--<h3 class="card-title">States</h3>-->
+                  <div class="card-tools float-start">
+                    <div class="input-group">
+                      <input type="text" id="search" class="form-control" placeholder="Search">
+                    </div>
+                  </div>
+                  <div class="card-tools float-end">
+                    <button type="button" id="resetButton" class="btn btn-secondary">
+                      <i class="fas fa-undo"></i> Reset
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <table id="statesTable" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px">ID</th>
+                        <th style="width: 90px">State Code</th>
+                        <th>States</th>
+                        <th style="width: 120px">Action</th> <!-- Increased width for Action column -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Content will be dynamically injected here -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer clearfix">
+                  <label for="pageSize">Page Size:</label>
+                  <select id="pageSize" class="form-control d-inline-block mb-2" style="width: auto;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                  </select>
+                  <ul class="pagination pagination-sm m-0 float-end">
+                    <li class="page-item" id="firstPage"><a class="page-link" href="#">First</a></li>
+                    <li class="page-item" id="prevPage"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="pageNumber">1</a></li>
+                    <li class="page-item" id="nextPage"><a class="page-link" href="#">&raquo;</a></li>
+                    <li class="page-item" id="lastPage"><a class="page-link" href="#">Last</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Confirmation Modal for Delete -->
+            <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete this state?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+              <div id="toastMessage" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                  <div class="toast-body" id="toastBody"></div>
+                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="app-footer">
+      <div class="float-end d-none d-sm-inline">Anything you want</div> <!--end::To the end--> <!--begin::Copyright--> <strong>
+        Copyright &copy; 2014-2024&nbsp;
+        <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+      </strong>
+      All rights reserved.
+      <!--end::Copyright-->
+    </footer> <!--end::Footer-->
+  </div> <!--end::App Wrapper--> <!--begin::Script--> <!--begin::Third Party Plugin(OverlayScrollbars)-->
+  <!-- Include Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="/Admin/dist/js/ManageState.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script> <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I=" crossorigin="anonymous"></script> <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script> <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
+
+
+  <script>
+    const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
+    const Default = {
+    scrollbarTheme: "os-theme-light",
+    scrollbarAutoHide: "leave",
+    scrollbarClickScroll: true,
+    };
+    document.addEventListener("DOMContentLoaded", function() {
+    const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+    if (
+    sidebarWrapper &&
+    typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
+    ) {
+    OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+    scrollbars: {
+    theme: Default.scrollbarTheme,
+    autoHide: Default.scrollbarAutoHide,
+    clickScroll: Default.scrollbarClickScroll,
+    },
+    });
+    }
+    });
+  </script>
+
+  <script src="../../../dist/js/adminlte.js"></script>
+
+</body>
+</html>
