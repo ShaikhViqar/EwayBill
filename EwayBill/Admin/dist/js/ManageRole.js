@@ -35,7 +35,6 @@ $(document).ready(function () {
         $.each(roles, function (index, role) {
             tableBody += `
                 <tr class="align-middle role-row" data-roleid="${role.RoleID}">
-                    <td>${role.RoleID}</td>
                     <td>${role.Role}</td>
                     <td>
                         <button class="btn btn-warning btn-sm editRole" data-roleid="${role.RoleID}" data-rolename="${role.Role}">Edit</button>

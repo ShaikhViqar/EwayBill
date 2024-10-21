@@ -35,7 +35,6 @@ $(document).ready(function () {
         $.each(users, function (index, user) {
             tableBody += `
             <tr class="align-middle">
-                <td>${user.UserID}</td>
                 <td>${user.FirstName}</td>
                 <td>${user.LastName}</td>
                 <td>${user.Email}</td>

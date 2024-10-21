@@ -35,7 +35,6 @@ $(document).ready(function () {
         $.each(states, function (index, state) {
             tableBody += `
                 <tr class="align-middle">
-                    <td>${state.StateID}</td>
                     <td>${state.StateCode}</td>
                     <td>${state.State}</td>
                     <td>
