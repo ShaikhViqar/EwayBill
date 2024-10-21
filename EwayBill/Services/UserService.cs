@@ -529,5 +529,88 @@ namespace EwayBill.Services
                 throw new Exception($"Error deleting role: {ex.Message}");
             }
         }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            User user = null;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("GetUserByEmail", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    try
+                    {
+                        await connection.OpenAsync();
+
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        {
+                            if (await reader.ReadAsync())
+                            {
+                                user = new User
+                                {
+                                    UserID = Convert.ToInt32(reader["UserID"]),
+                                    FirstName = reader["FirstName"].ToString(),
+                                    LastName = reader["LastName"].ToString(),
+                                    Email = reader["Email"].ToString(),
+                                    Password = reader["Password"].ToString(),
+                                };
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error retrieving user by email", ex);
+                    }
+                }
+            }
+
+            return user;
+        }
+
+        public async Task<bool> UpdatePasswordAsync(User user)
+        {
+            // Logic to update the password in the database
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("UpdateUserPassword", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", user.Email);
+                    command.Parameters.AddWithValue("@Password", user.Password); // Encrypted password
+
+                    await connection.OpenAsync();
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    return rowsAffected > 0; // Return true if password updated
+                }
+            }
+        }
+
+        public bool IsemailTaken(string email)
+        {
+            bool isTaken = false;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("CheckEmailExists", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    conn.Open();
+                    int result = (int)cmd.ExecuteScalar(); // Get the count from the stored procedure
+
+                    if (result > 0)
+                    {
+                        isTaken = true; // Email is already taken
+                    }
+                }
+            }
+
+            return isTaken;
+        }
     }
 }

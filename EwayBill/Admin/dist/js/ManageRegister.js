@@ -34,6 +34,47 @@ $(document).ready(function () {
         }
     });
 
+    $('#email').on('input', function () {
+    var email = $(this).val();
+    var emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format validation
+
+    if (email.length > 0) {
+            // Check for valid email format
+            if (!emailFormat.test(email)) {
+                $('#email').removeClass('is-valid').addClass('is-invalid');
+                $('#emailFeedback').removeClass('valid-feedback').addClass('invalid-feedback');
+                $('#emailFeedback').text('Invalid email format');
+                return; // Exit if the format is invalid
+            }
+    
+            $.ajax({
+                url: '/Account/CheckEmail',
+                type: 'GET',
+                data: { email: email },
+                success: function (isAvailable) {
+                    var emailField = $('#email');
+                    var feedback = $('#emailFeedback');
+    
+                    if (isAvailable) {
+                        emailField.removeClass('is-invalid').addClass('is-valid');
+                        feedback.removeClass('invalid-feedback').addClass('valid-feedback');
+                        feedback.text('Email is available');
+                    } else {
+                        emailField.removeClass('is-valid').addClass('is-invalid');
+                        feedback.removeClass('valid-feedback').addClass('invalid-feedback');
+                        feedback.text('Email is already taken');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    showToast('Error', error, 'danger');
+                }
+            });
+        } else {
+            $('#email').removeClass('is-valid is-invalid');
+            $('#emailFeedback').text('');
+        }
+     });
+
     // Drop zone for child file uploads
     const dropzoneArea = document.getElementById("dropzoneArea");
     const childFileUploads = document.getElementById("childFileUploads");

@@ -15,6 +15,7 @@ namespace EwayBill.Controllers
     {
         private readonly UserService _userService = new UserService();
         private readonly GenerateToken _generateToken = new GenerateToken();
+        private readonly EmailService _emailService = new EmailService();
 
         [HttpGet]
         public ActionResult Login()
@@ -486,6 +487,78 @@ namespace EwayBill.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ForgotPassword(string email)
+        {
+            var user = await _userService.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return Json(new { success = false, message = "Email not found." });
+            }
+
+            // Generate a unique reset code (e.g., GUID)
+            string resetCode = Guid.NewGuid().ToString();
+
+            // Store the reset code in Session
+            Session["ResetCode_" + user.Email] = resetCode; // Store it in Session
+
+            // Get the base URL (http://localhost:50763)
+            string baseUrl = $"{Request.Url.Scheme}://{Request.Url.Authority}";
+
+            // Create the reset link
+            string resetLink = $"{baseUrl}/Admin/dist/pages/examples/ResetPassword.html?email={user.Email}&resetCode={resetCode}";
+
+            // Send the reset link via email
+            await _emailService.SendEmailAsync(user.Email, "Password Reset",
+                $"Click the link to reset your password: {resetLink}");
+
+            return Json(new { success = true, message = "Password reset link sent." });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ResetPassword(string email, string newPassword, string resetCode)
+        {
+            var user = await _userService.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return Json(new { success = false, message = "User not found." });
+            }
+
+            // Retrieve the reset code from Session
+            var storedResetCode = Session["ResetCode_" + email] as string;
+
+            // Validate the reset code
+            if (storedResetCode == null || storedResetCode != resetCode)
+            {
+                return Json(new { success = false, message = "Invalid or expired reset code." });
+            }
+
+            // Encrypt the new password
+            user.Password = EncryptionUtility.Encrypt(newPassword);
+
+            // Clear the reset code (invalidate after use)
+            Session.Remove("ResetCode_" + email);
+
+            // Update the user's password in the database
+            var isPasswordUpdated = await _userService.UpdatePasswordAsync(user);
+
+            if (isPasswordUpdated)
+            {
+                return Json(new { success = true, message = "Password has been reset successfully." });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Failed to reset password." });
+            }
+        }
+
+        [HttpGet]
+        public JsonResult Checkemail(string email)
+        {
+            bool exists = _userService.IsemailTaken(email);
+            return Json(!exists, JsonRequestBehavior.AllowGet); // Returns true if the username is available
         }
     }
 }
