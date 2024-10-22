@@ -216,6 +216,7 @@
     <Compile Include="Services\EwayBillService.cs" />
     <Compile Include="Services\MastersService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utils\EmailService.cs" />
     <Compile Include="Utils\EncryptionHelper.cs" />
     <Compile Include="Utils\EncryptionUtility.cs" />
     <Compile Include="Utils\GenerateToken.cs" />
@@ -270,6 +271,7 @@
     <Content Include="Admin\dist\js\adminlte.js" />
     <Content Include="Admin\dist\js\adminlte.min.js" />
     <Content Include="Admin\dist\js\EwayBill\BillShow.js" />
+    <Content Include="Admin\dist\js\ForgotPassword.js" />
     <Content Include="Admin\dist\js\Login.js" />
     <Content Include="Admin\dist\js\ManageCity.js" />
     <Content Include="Admin\dist\js\ManageEdit.js" />
@@ -278,6 +280,7 @@
     <Content Include="Admin\dist\js\ManageState.js" />
     <Content Include="Admin\dist\js\ManageUsers.js" />
     <Content Include="Admin\dist\js\ManageView.js" />
+    <Content Include="Admin\dist\js\ResetPassword.js" />
     <Content Include="Admin\dist\pages\docs\browser-support.html" />
     <Content Include="Admin\dist\pages\docs\color-mode.html" />
     <Content Include="Admin\dist\pages\docs\components\main-header.html" />
@@ -292,11 +295,13 @@
     <Content Include="Admin\dist\pages\EwayBill\BillNew.html" />
     <Content Include="Admin\dist\pages\EwayBill\BillShow.html" />
     <Content Include="Admin\dist\pages\EwayBill\BillView.html" />
+    <Content Include="Admin\dist\pages\examples\ForgotPassword.html" />
     <Content Include="Admin\dist\pages\examples\lockscreen.html" />
     <Content Include="Admin\dist\pages\examples\login-v2.html" />
     <Content Include="Admin\dist\pages\examples\login.html" />
     <Content Include="Admin\dist\pages\examples\register-v2.html" />
     <Content Include="Admin\dist\pages\examples\register.html" />
+    <Content Include="Admin\dist\pages\examples\ResetPassword.html" />
     <Content Include="Admin\dist\pages\forms\general.html" />
     <Content Include="Admin\dist\pages\generate\theme.html" />
     <Content Include="Admin\dist\pages\index.html" />
@@ -380,6 +385,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="DBScripts\EwayBill%2822-10-2024%29-01.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -533,7 +539,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DBScripts\" />
     <Folder Include="Uploads\" />
     <Folder Include="Views\Masters\" />
     <Folder Include="Views\Sample\" />
