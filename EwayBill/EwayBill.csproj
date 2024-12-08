@@ -399,7 +399,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\Login.css" />
-    <Content Include="DBScripts\EwayBill%2822-10-2024%29-01.sql" />
+    <Content Include="DBScripts\EwayBill%2808-12-2024%29.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -514,6 +514,9 @@
     <Content Include="Admin\src\scss\_variables-dark.scss" />
     <Content Include="Admin\src\scss\_variables.scss" />
     <Content Include="Admin\tsconfig.json" />
+    <Content Include="GeneratedPdfs\UserDetails_1_20241208213848.pdf" />
+    <Content Include="GeneratedPdfs\UserDetails_1_20241208214138.pdf" />
+    <Content Include="GeneratedPdfs\UserDetails_2_20241208213854.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -527,6 +530,10 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Templates\demo.html" />
     <Content Include="Templates\UserDetailsTemplate.html" />
+    <Content Include="Uploads\Screenshot %28575%29_08-12-2024-21-38-48.png" />
+    <Content Include="Uploads\Screenshot %28575%29_08-12-2024-21-38-54.png" />
+    <Content Include="Uploads\Screenshot %28576%29_08-12-2024-21-38-48.png" />
+    <Content Include="Uploads\Screenshot %28576%29_08-12-2024-21-38-54.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -555,8 +562,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="GeneratedPdfs\" />
-    <Folder Include="Uploads\" />
     <Folder Include="Views\Employee\" />
     <Folder Include="Views\Masters\" />
     <Folder Include="Views\Sample\" />
