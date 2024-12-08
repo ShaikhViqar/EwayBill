@@ -1,6 +1,9 @@
 ﻿using EwayBill.Models;
 using EwayBill.Services;
 using EwayBill.Utils;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -402,6 +405,16 @@ namespace EwayBill.Controllers
                 bool isUserRegistered = await _userService.RegisterUserAsync(user);
                 if (isUserRegistered)
                 {
+                    // Generate PDF for user details
+                    //string pdfPath = GenerateUserPdf(user);
+
+                    //// Return PDF as a download
+                    //string fileName = Path.GetFileName(pdfPath);
+                    //string downloadUrl = Url.Content("~/GeneratedPdfs/" + fileName);
+
+                    user.Password = EncryptionUtility.Decrypt(user.Password);
+                    GenerateUserPdf(user);
+
                     string redirectUrl = Url.Content("~/Admin/dist/pages/Users/ManageUsers.html");
                     return Json(new { redirectUrl = redirectUrl });
                 }
@@ -559,6 +572,133 @@ namespace EwayBill.Controllers
         {
             bool exists = _userService.IsemailTaken(email);
             return Json(!exists, JsonRequestBehavior.AllowGet); // Returns true if the username is available
+        }
+
+        //private string GenerateUserPdf(User user)
+        //{
+        //    string folderPath = Server.MapPath("~/GeneratedPdfs");
+        //    if (!Directory.Exists(folderPath))
+        //        Directory.CreateDirectory(folderPath);
+
+        //    string fileName = $"UserDetails_{user.UserID}_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+        //    string filePath = Path.Combine(folderPath, fileName);
+
+        //    using (FileStream stream = new FileStream(filePath, FileMode.Create))
+        //    using (Document pdfDoc = new Document(PageSize.A4, 25, 25, 30, 30))
+        //    {
+        //        PdfWriter.GetInstance(pdfDoc, stream);
+        //        pdfDoc.Open();
+
+        //        // Add content to PDF
+        //        pdfDoc.Add(new Paragraph($"User Registration Details"));
+        //        pdfDoc.Add(new Paragraph($"----------------------------------"));
+        //        pdfDoc.Add(new Paragraph($"Name: {user.FirstName} {user.LastName}"));
+        //        pdfDoc.Add(new Paragraph($"Username: {user.UserName}"));
+        //        pdfDoc.Add(new Paragraph($"Email: {user.Email}"));
+        //        pdfDoc.Add(new Paragraph($"Phone: {user.PhoneNumber}"));
+        //        pdfDoc.Add(new Paragraph($"Role: {user.Role}"));
+        //        pdfDoc.Add(new Paragraph($"Gender: {user.Gender}"));
+        //        //pdfDoc.Add(new Paragraph($"Date of Birth: {user.DateOfBirth?.ToString("dd/MM/yyyy")}"));
+        //        pdfDoc.Add(new Paragraph($"Address: {user.Address}, {user.City}, {user.State}, {user.PostalCode}, {user.Country}"));
+        //        pdfDoc.Add(new Paragraph($"Hobbies: {user.Hobbies}"));
+
+        //        // Add child file names
+        //        if (user.ChildFileNames != null && user.ChildFileNames.Count > 0)
+        //        {
+        //            pdfDoc.Add(new Paragraph("Uploaded Files:"));
+        //            foreach (var childFile in user.ChildFileNames)
+        //            {
+        //                pdfDoc.Add(new Paragraph($" - {childFile.FileName}"));
+        //            }
+        //        }
+
+        //        pdfDoc.Close();
+        //    }
+
+        //    return filePath;
+        //}
+
+        private string GenerateUserPdf(User user)
+        {
+            string folderPath = Server.MapPath("~/GeneratedPdfs");
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            string fileName = $"UserDetails_{user.UserID}_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            string filePath = Path.Combine(folderPath, fileName);
+
+            // Load HTML template
+            string htmlTemplate = System.IO.File.ReadAllText(Server.MapPath("~/Templates/UserDetailsTemplate.html"));
+
+            // Replace placeholders with user data
+            htmlTemplate = htmlTemplate.Replace("{{FirstName}}", user.FirstName)
+                                        .Replace("{{LastName}}", user.LastName)
+                                        .Replace("{{DateOfBirth}}", string.IsNullOrEmpty(user.DateOfBirth) ? "N/A" : user.DateOfBirth)
+                                        .Replace("{{PostalCode}}", user.PostalCode)
+                                        .Replace("{{Country}}", user.Country)
+                                        .Replace("{{State}}", user.State)
+                                        .Replace("{{City}}", user.City)
+                                        .Replace("{{PhoneNumber}}", user.PhoneNumber ?? "N/A")
+                                        .Replace("{{Email}}", user.Email)
+                                        .Replace("{{Gender}}", user.Gender ?? "N/A")
+                                        .Replace("{{Address}}", user.Address)
+                                        //.Replace("{{Address}}", $"{user.Address}, {user.City}, {user.State}, {user.PostalCode}, {user.Country}")
+                                        .Replace("{{Role}}", user.Role ?? "N/A")
+                                        .Replace("{{Hobbies}}", user.Hobbies ?? "N/A")
+                                        .Replace("{{File}}", user.FileName ?? "N/A")
+                                        .Replace("{{FileName}}", GetImagePath(user.FileName)) // Adjust for image path
+                                        .Replace("{{UserName}}", user.UserName)
+                                        .Replace("{{Password}}", user.Password);
+
+            //// Add child files dynamically
+            //if (user.ChildFileNames != null && user.ChildFileNames.Count > 0)
+            //{
+            //    string childFilesHtml = string.Join("", user.ChildFileNames.Select(f => $"<li>{f.FileName}</li>"));
+            //    htmlTemplate = htmlTemplate.Replace("{{ChildFiles}}", $"<ul>{childFilesHtml}</ul>");
+            //}
+            //else
+            //{
+            //    htmlTemplate = htmlTemplate.Replace("{{ChildFiles}}", "<p>No files uploaded.</p>");
+            //}
+
+            // Add child files dynamically as images
+            if (user.ChildFileNames != null && user.ChildFileNames.Count > 0)
+            {
+                // Use <div> for each child file with the image and file name
+                string childFilesHtml = string.Join("", user.ChildFileNames.Select(f =>
+                    $"<div class='child-file'><img src='{GetImagePath(f.FileName)}' alt='Child File' /><div class='file-name'>{f.FileName}</div></div>"));
+                // Replace the placeholder with the child file HTML structure
+                htmlTemplate = htmlTemplate.Replace("{{ChildFiles}}", childFilesHtml);
+            }
+            else
+            {
+                // If no child files, show a message
+                htmlTemplate = htmlTemplate.Replace("{{ChildFiles}}", "<p>No files uploaded.</p>");
+            }
+
+            // Generate PDF from HTML
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            using (Document pdfDoc = new Document(PageSize.A4, 25, 25, 30, 30))
+            {
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+
+                using (StringReader sr = new StringReader(htmlTemplate))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                }
+
+                pdfDoc.Close();
+            }
+
+            return filePath;
+        }
+
+        // Helper method to get full image path
+        private string GetImagePath(string fileName)
+        {
+            // Assume the images are stored in the ~/Uploads folder
+            return Server.MapPath("~/Uploads/" + fileName);
         }
     }
 }

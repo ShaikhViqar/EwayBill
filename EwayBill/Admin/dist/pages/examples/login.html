@@ -13,6 +13,61 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css" integrity="sha256-dSokZseQNT08wYEWiz5iLI8QPlKxG+TswNRD8k35cpg=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
   <link rel="stylesheet" href="../../../dist/css/adminlte.css">
+  <style>
+    .loader {
+      color: black;
+      font-size: 45px;
+      text-indent: -9999em;
+      overflow: hidden;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      position: absolute;
+      transform: translateZ(0);
+      animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000; /* Ensure it's on top of other elements */
+    }
+
+    @keyframes mltShdSpin {
+      0% {
+        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+      }
+
+      5%, 95% {
+        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+      }
+
+      10%, 59% {
+        box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+      }
+
+      20% {
+        box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+      }
+
+      38% {
+        box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+      }
+
+      100% {
+        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+      }
+    }
+
+    @keyframes round {
+      0% {
+        transform: rotate(0deg)
+      }
+
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+ 
+  </style>
 </head>
 
 <body class="login-page bg-body-secondary">
@@ -47,6 +102,12 @@
         <p class="mb-1"> <a href="ForgotPassword.html">I forgot my password</a> </p>
       </div>
     </div>
+  </div>
+  <div id="loader" style="display: none;" class="text-center">
+    <!--<div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+    </div>-->
+    <span class="loader"></span>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I=" crossorigin="anonymous"></script>

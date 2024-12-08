@@ -201,6 +201,85 @@ namespace EwayBill.Services
         }
         #endregion
 
+        #region Manage Country
+        public async Task<List<ManageCountry>> GetManageCountry(int CountryID, int? pageNumber, int? pageSize, string searchQuery)
+        {
+            #region Declaration
+            DataTable dt = new DataTable();
+            SqlConnection con = null;
+            List<ManageCountry> manageCountries = null;
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            if (CountryID != 0)
+            {
+                param.Add(new SqlParameter { ParameterName = "@CountryID", DbType = DbType.Int32, Value = CountryID });
+            }
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                param.Add(new SqlParameter { ParameterName = "@SearchQuery", DbType = DbType.String, Value = searchQuery });
+            }
+            #endregion
+
+            try
+            {
+                #region Interacting with database
+                using (con = new SqlConnection(_connectionString))
+                {
+                    await con.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("ShowManageCountry", con)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+                    cmd.Parameters.AddWithValue("@PageSize", pageSize);
+                    cmd.Parameters.AddRange(param.ToArray());
+                    await cmd.ExecuteNonQueryAsync();
+                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                    adp.Fill(dt);
+                }
+                #endregion
+
+                #region Wrap data
+                if (dt.Rows.Count > 0)
+                {
+                    manageCountries = new List<ManageCountry>();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        ManageCountry manageCountry = new ManageCountry
+                        {
+                            CountryID = row["CountryID"] as int? ?? 0,
+                            CountryCode = row["CountryCode"] as string ?? string.Empty,
+                            CountryName = row["CountryName"] as string ?? string.Empty,
+                            UserID = row["UserID"] as int? ?? 0
+                        };
+                        manageCountries.Add(manageCountry);
+                    }
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return manageCountries;
+        }
+
+        public async Task<int> GetTotalCountryCount(string searchQuery)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                await con.OpenAsync();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ManageCountry where IsActive = 1", con); // Adjust to your actual roles table
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    cmd.CommandText += " AND (CountryName LIKE @SearchQuery OR CAST(CountryID AS VARCHAR) LIKE @SearchQuery OR CountryCode LIKE @SearchQuery)";
+                    cmd.Parameters.AddWithValue("@SearchQuery", $"%{searchQuery}%");
+                }
+                return (int)await cmd.ExecuteScalarAsync();
+            }
+        }
+        #endregion
+
         #region Manage State
         public async Task<ManageState> SaveManageState(ManageState manageState)
         {
@@ -251,7 +330,7 @@ namespace EwayBill.Services
             return manageState;
         }
 
-        public async Task<List<ManageState>> GetManageState(int StateID, int? pageNumber, int? pageSize, string searchQuery)
+        public async Task<List<ManageState>> GetManageState(int StateID, int? pageNumber, int? pageSize, string searchQuery, string CountryCode)
         {
             #region Declaration
             DataTable dt = new DataTable();
@@ -266,6 +345,10 @@ namespace EwayBill.Services
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 param.Add(new SqlParameter { ParameterName = "@SearchQuery", DbType = DbType.String, Value = searchQuery });
+            }
+            if (!string.IsNullOrEmpty(CountryCode))
+            {
+                param.Add(new SqlParameter { ParameterName = "@CountryCode", DbType = DbType.String, Value = CountryCode });
             }
             #endregion
 
@@ -297,6 +380,7 @@ namespace EwayBill.Services
                         ManageState manageState = new ManageState
                         {
                             StateID = row["StateID"] as int? ?? 0,
+                            CountryCode = row["CountryCode"] as string ?? string.Empty,
                             StateCode = row["StateCode"] as int? ?? 0,
                             State = row["State"] as string ?? string.Empty,
                             UserID = row["UserID"] as int? ?? 0
@@ -313,17 +397,52 @@ namespace EwayBill.Services
             return manageStates;
         }
 
-        public async Task<int> GetTotalStateCount(string searchQuery)
+        //public async Task<int> GetTotalStateCount(string searchQuery, string CountryCode)
+        //{
+        //    using (SqlConnection con = new SqlConnection(_connectionString))
+        //    {
+        //        await con.OpenAsync();
+        //        SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ManageState where IsActive = 1", con); // Adjust to your actual roles table
+        //        if (!string.IsNullOrEmpty(searchQuery))
+        //        {
+        //            cmd.CommandText += " AND (State LIKE @SearchQuery OR CAST(StateID AS VARCHAR) LIKE @SearchQuery OR CAST(StateCode AS VARCHAR) LIKE @SearchQuery)";
+        //            cmd.Parameters.AddWithValue("@SearchQuery", $"%{searchQuery}%");
+        //        }
+        //        return (int)await cmd.ExecuteScalarAsync();
+        //    }
+        //}
+
+        public async Task<int> GetTotalStateCount(string searchQuery, string CountryCode)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 await con.OpenAsync();
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ManageState where IsActive = 1", con); // Adjust to your actual roles table
+
+                // Prepare the SQL query with initial conditions
+                SqlCommand cmd = new SqlCommand(@"
+                    SELECT COUNT(*)
+                    FROM ManageState
+                    WHERE IsActive = 1", con);
+
+                // Add a filter for searchQuery, if provided
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    cmd.CommandText += " AND (State LIKE @SearchQuery OR CAST(StateID AS VARCHAR) LIKE @SearchQuery OR CAST(StateCode AS VARCHAR) LIKE @SearchQuery)";
+                    cmd.CommandText += @"
+                     AND (
+                         State LIKE @SearchQuery OR 
+                         CAST(StateID AS VARCHAR) LIKE @SearchQuery OR 
+                         CAST(StateCode AS VARCHAR) LIKE @SearchQuery)";
                     cmd.Parameters.AddWithValue("@SearchQuery", $"%{searchQuery}%");
                 }
+
+                // Add a filter for CountryCode, if provided
+                if (!string.IsNullOrEmpty(CountryCode))
+                {
+                    cmd.CommandText += " AND CountryCode = @CountryCode";
+                    cmd.Parameters.AddWithValue("@CountryCode", CountryCode);
+                }
+
+                // Execute the query and return the total count
                 return (int)await cmd.ExecuteScalarAsync();
             }
         }

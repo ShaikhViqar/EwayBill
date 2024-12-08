@@ -83,6 +83,37 @@ namespace EwayBill.Controllers
         }
         #endregion
 
+        #region Manage Country
+        [HttpGet]
+        public async Task<JsonResult> GetManageCountry(int? page = null, int? pageSize = null, string searchQuery = null)
+        {
+            try
+            {
+                List<ManageCountry> countries;
+                if (page.HasValue && pageSize.HasValue)
+                {
+                    countries = await _mastersService.GetManageCountry(0, page.Value, pageSize.Value, searchQuery);
+                }
+                else
+                {
+                    countries = await _mastersService.GetManageCountry(0, null, null, searchQuery);
+                }
+
+                int totalItems = 0;
+                if (page.HasValue && pageSize.HasValue)
+                {
+                    totalItems = await _mastersService.GetTotalCountryCount(searchQuery);
+                }
+
+                return Json(new { countries, totalItems }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
         #region Manage State
         [HttpPost]
         public async Task<ActionResult> SaveManageState(ManageState manageState)
@@ -103,24 +134,24 @@ namespace EwayBill.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetManageState(int? page = null, int? pageSize = null, string searchQuery = null)
+        public async Task<JsonResult> GetManageState(int? page = null, int? pageSize = null, string searchQuery = null, string CountryCode = null)
         {
             try
             {
                 List<ManageState> states;
                 if (page.HasValue && pageSize.HasValue)
                 {
-                    states = await _mastersService.GetManageState(0, page.Value, pageSize.Value, searchQuery);
+                    states = await _mastersService.GetManageState(0, page.Value, pageSize.Value, searchQuery, CountryCode);
                 }
                 else
                 {
-                    states = await _mastersService.GetManageState(0, null, null, searchQuery);
+                    states = await _mastersService.GetManageState(0, null, null, searchQuery, CountryCode);
                 }
 
                 int totalItems = 0;
                 if (page.HasValue && pageSize.HasValue)
                 {
-                    totalItems = await _mastersService.GetTotalStateCount(searchQuery);
+                    totalItems = await _mastersService.GetTotalStateCount(searchQuery, CountryCode);
                 }
 
                 return Json(new { states, totalItems }, JsonRequestBehavior.AllowGet);

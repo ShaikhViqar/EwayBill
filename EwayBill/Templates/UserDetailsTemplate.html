@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+            td strong {
+                display: block; /* Ensures the label is on top */
+                margin-bottom: 5px;
+            }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        img {
+            width: 100px; /* Adjust the image size */
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h1>Personal Details</h1>
+        <hr />
+        <table>
+            <tr>
+                <td><strong>FirstName:</strong></td>
+                <td><strong>LastName:</strong></td>
+                <td><strong>Date of Birth:</strong></td>
+            </tr>
+            <tr>
+                <td>{{FirstName}}</td>
+                <td>{{LastName}}</td>
+                <td>{{DateOfBirth}}</td>
+            </tr>
+            <tr>
+                <td><strong>Zip Code:</strong></td>
+                <td><strong>Country:</strong></td>
+                <td><strong>State:</strong></td>
+            </tr>
+            <tr>
+                <td>{{PostalCode}}</td>
+                <td>{{Country}}</td>
+                <td>{{State}}</td>
+            </tr>
+            <tr>
+                <td><strong>City:</strong></td>
+                <td><strong>Phone Number:</strong></td>
+                <td><strong>Email:</strong></td>
+            </tr>
+            <tr>
+                <td>{{City}}</td>
+                <td>{{PhoneNumber}}</td>
+                <td>{{Email}}</td>
+            </tr>
+            <tr>
+                <td><strong>Gender:</strong></td>
+                <td colspan="2"><strong>Address:</strong></td>
+            </tr>
+            <tr>
+                <td>{{Gender}}</td>
+                <td colspan="2">{{Address}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h1>Other Details</h1>
+        <hr />
+        <table>
+            <tr>
+                <td><strong>Role:</strong></td>
+                <td><strong>Hobbies:</strong></td>
+                <td><strong>Upload Image:</strong></td>
+            </tr>
+            <tr>
+                <td>{{Role}}</td>
+                <td>{{Hobbies}}</td>
+                <td>
+                    <div><img src="{{FileName}}" alt="Uploaded Image" /></div>
+                    <div class="file-name">{{File}}</div>
+                </td>
+            </tr>
+        </table>
+        <h3>Upload Other Images:</h3>
+        {{ChildFiles}}
+    </div>
+
+    <div class="section">
+        <h1>Login Details</h1>
+        <hr />
+        <table>
+            <tr>
+                <td><strong>Username:</strong></td>
+                <td><strong>Password:</strong></td>
+            </tr>
+            <tr>
+                <td>{{UserName}}</td>
+                <td>{{Password}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

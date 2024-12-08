@@ -51,6 +51,12 @@
     <Reference Include="FromHeaderAttribute, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FromHeaderAttribute.2.0.4\lib\net45\FromHeaderAttribute.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.36.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.36.0\lib\net45\Microsoft.IdentityModel.Abstractions.dll</HintPath>
@@ -196,6 +202,7 @@
     <Compile Include="Controllers\ApiAccountController.cs" />
     <Compile Include="Controllers\ApiEwayBillController.cs" />
     <Compile Include="Controllers\CheckBoxOptionController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EwayBillController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
@@ -203,9 +210,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckBoxOption.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EwayBillRequest.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\ManageCity.cs" />
+    <Compile Include="Models\ManageCountry.cs" />
     <Compile Include="Models\ManageRole.cs" />
     <Compile Include="Models\ManageState.cs" />
     <Compile Include="Models\ManageUsersViewModel.cs" />
@@ -213,6 +222,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\EwayBillService.cs" />
     <Compile Include="Services\MastersService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -270,6 +280,8 @@
     <Content Include="Admin\dist\css\adminlte.rtl.min.css" />
     <Content Include="Admin\dist\js\adminlte.js" />
     <Content Include="Admin\dist\js\adminlte.min.js" />
+    <Content Include="Admin\dist\js\Employee.js" />
+    <Content Include="Admin\dist\js\EwayBill\BillNew.js" />
     <Content Include="Admin\dist\js\EwayBill\BillShow.js" />
     <Content Include="Admin\dist\js\ForgotPassword.js" />
     <Content Include="Admin\dist\js\Login.js" />
@@ -315,6 +327,7 @@
     <Content Include="Admin\dist\pages\layout\sidebar-mini.html" />
     <Content Include="Admin\dist\pages\layout\unfixed-sidebar.html" />
     <Content Include="Admin\dist\pages\Masters\ManageCity.html" />
+    <Content Include="Admin\dist\pages\Masters\ManageCountry.html" />
     <Content Include="Admin\dist\pages\Masters\ManageRole.html" />
     <Content Include="Admin\dist\pages\Masters\ManageState.html" />
     <Content Include="Admin\dist\pages\tables\simple.html" />
@@ -322,6 +335,7 @@
     <Content Include="Admin\dist\pages\UI\icons.html" />
     <Content Include="Admin\dist\pages\UI\timeline.html" />
     <Content Include="Admin\dist\pages\Users\DropZone.html" />
+    <Content Include="Admin\dist\pages\Users\Employee.html" />
     <Content Include="Admin\dist\pages\Users\ManageEdit.html" />
     <Content Include="Admin\dist\pages\Users\ManageRegister.html" />
     <Content Include="Admin\dist\pages\Users\ManageUsers.html" />
@@ -511,6 +525,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Templates\demo.html" />
+    <Content Include="Templates\UserDetailsTemplate.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -539,7 +555,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="GeneratedPdfs\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Employee\" />
     <Folder Include="Views\Masters\" />
     <Folder Include="Views\Sample\" />
   </ItemGroup>

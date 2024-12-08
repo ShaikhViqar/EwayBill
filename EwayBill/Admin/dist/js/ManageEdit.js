@@ -1,12 +1,115 @@
 $(document).ready(function() {
-    fetchStates();
+    fetchountries();
+    //fetchStates();
     fetchRoles();
     let selectedHobbies = []; // Declare the selectedHobbies array in the outer scope
     let isPageLoad = true;
     let removedFileIDs = [];
     const childFilesContainer = $('#childFilesContainer');
 
-    function fetchStates() {
+    function fetchountries() {
+        $.ajax({
+            url: `/Masters/GetManageCountry`,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.countries) {
+                    var countryDropdown = $('#countryDropdownEdit');
+                    countryDropdown.empty(); // Clear previous options
+                    countryDropdown.append('<option selected disabled value="">Choose Country...</option>');
+
+                    $.each(response.countries, function(index, country) {
+                        // Check if the country already exists in the dropdown
+                        if ($('#countryDropdownEdit option[value="' + country.CountryCode + '"]').length === 0) {
+                            countryDropdown.append('<option value="' + country.CountryCode + '">' + country.CountryName + '</option>');
+                        }
+                    });
+
+                    // After the countries are fetched, bind the user country if user data exists
+                    const user = getUserData();
+                    if (user && user.Country) {
+                        // Find the matching country and bind the CountryCode
+                        let selectedCountryCode = null;
+
+                        $.each(response.countries, function(index, country) {
+                            if (country.CountryName === user.Country) {
+                                selectedCountryCode = country.CountryCode; // Store the matched CountryCode
+                                $('#countryDropdownEdit').val(country.CountryCode); // Set dropdown to match user's country
+                                return false; // Exit the loop once a match is found
+                            }
+                        });
+
+                        if (selectedCountryCode) {
+                            // Fetch cities based on the selected country code
+                            fetchStates(selectedCountryCode);
+                        }
+                    }
+                } else if (response.error) {
+                    showToast('Error', response.error, 'danger');
+                }
+            },
+            error: function(xhr, status, error) {
+                showToast('Error', error, 'danger');
+            }
+        });
+    }
+
+    // Function to fetch states based on the selected country
+    function fetchStates(countryCode) {
+        $.ajax({
+            url: `/Masters/GetManageState?CountryCode=${countryCode}`,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                var stateDropdown = $('#stateDropdownEdit'); // Use stateDropdownEdit for editing
+                stateDropdown.empty(); // Clear previous options
+
+                // Append the default option first
+                stateDropdown.append('<option selected disabled value="">Choose State...</option>');
+
+                if (response.states && response.states.length > 0) {
+                    $.each(response.states, function(index, state) {
+                        if ($('#stateDropdownEdit option[value="' + state.StateCode + '"]').length === 0) {
+                            stateDropdown.append('<option value="' + state.StateCode + '">' + state.State + '</option>');
+                        }
+                    });
+
+                    // Only bind the user's state during the initial page load
+                    if (isPageLoad) {
+                        const user = getUserData();
+                        if (user && user.State) {
+                            bindUserState(user.State);
+                        }
+                        // Set the flag to false after the page has loaded
+                        //isPageLoad = false;
+                    }
+
+                    let selectedStateCode = null;
+
+                        $.each(response.states, function(index, state) {
+                            if (state.State === user.State) {
+                                selectedStateCode = state.StateCode; // Store the matched StateCode
+                                $('#stateDropdownEdit').val(state.StateCode); // Set dropdown to match user's state
+                                return false; // Exit the loop once a match is found
+                            }
+                        });
+
+                        if (selectedStateCode) {
+                            // Fetch cities based on the selected state code
+                            fetchCities(selectedStateCode);
+                        }
+                } else {
+                    // Optional: Handle case where no cities are found
+                    showToast('Error', 'No states found for the selected country.', 'danger');
+                }
+            },
+            error: function(xhr, status, error) {
+                showToast('Error', error, 'danger');
+            }
+        });
+    }
+
+    /*function fetchStates() {
         $.ajax({
             url: `/Masters/GetManageState`,
             type: 'GET',
@@ -51,7 +154,7 @@ $(document).ready(function() {
                 showToast('Error', error, 'danger');
             }
         });
-    }
+    }*/
 
     function fetchRoles() {
         $.ajax({
@@ -175,6 +278,16 @@ $(document).ready(function() {
         }
     }
 
+    // Function to bind user Country
+    function bindUserCountry(userCountry) {
+        userCountry = userCountry.trim(); // Trim to avoid extra spaces
+        if ($('#countryDropdownEdit option[value="' + userCountry + '"]').length > 0) {
+            $('#countryDropdownEdit').val(userCountry); // Set Country if it exists in the dropdown
+        } else {
+            $('#countryDropdownEdit').append(new Option(userCountry, userCountry, true, true));
+        }
+    }
+
     // Function to bind user state
     function bindUserState(userState) {
         userState = userState.trim(); // Trim to avoid extra spaces
@@ -215,6 +328,7 @@ $(document).ready(function() {
         $('#dateOfBirthEdit').val(user.DateOfBirth);
         $('#postalCodeEdit').val(user.PostalCode);
         $('#countryEdit').val(user.Country);
+        $('#stateEdit').val(user.State);
         $('#cityEdit').val(user.City);
         $('#phoneNumberEdit').val(user.PhoneNumber);
         $('#emailEdit').val(user.Email);
@@ -340,6 +454,25 @@ $(document).ready(function() {
         });
     }
 
+    // Fetch states when a country is selected in the edit form
+    $('#countryDropdownEdit').change(function() {
+        var selectedCountryCode = $(this).val(); // Get the selected country code
+        if (selectedCountryCode) {
+            fetchStates(selectedCountryCode); // Fetch states based on selected country code
+        } else {
+            $('#stateDropdownEdit').empty().append('<option selected disabled value="">Choose State...</option>'); // Clear city dropdown if no country is selected
+        }
+
+
+        var selectedStateCode = $(this).val(); // Get the selected state code
+        if (selectedStateCode) {
+            fetchCities(selectedStateCode); // Fetch cities based on selected state code
+        } else {
+            $('#cityDropdownEdit').empty().append('<option selected disabled value="">Choose City...</option>'); // Clear city dropdown if no state is selected
+        }
+    });
+
+
     // Fetch cities when a state is selected in the edit form
     $('#stateDropdownEdit').change(function() {
         var selectedStateCode = $(this).val(); // Get the selected state code
@@ -417,6 +550,7 @@ $(document).ready(function() {
         const loginDetails = new FormData(loginDetailsFormEdit);
 
         const selectedRole = $('#roleDropdownEdit option:selected').text();
+        const selectedCountry = $('#countryDropdownEdit option:selected').text();
         const selectedState = $('#stateDropdownEdit option:selected').text();
         const selectedCity = $('#cityDropdownEdit option:selected').text();
 
@@ -429,9 +563,11 @@ $(document).ready(function() {
         loginDetails.forEach((value, key) => combinedData.append(key, value));
 
         combinedData.delete('role');
+        combinedData.delete('country');
         combinedData.delete('state');
         combinedData.delete('city');
         combinedData.append('role', selectedRole);
+        combinedData.append('country', selectedCountry);
         combinedData.append('state', selectedState);
         combinedData.append('city', selectedCity);
 

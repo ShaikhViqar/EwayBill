@@ -5,12 +5,11 @@ using System.Web;
 
 namespace EwayBill.Models
 {
-    public class ManageState
+    public class ManageCountry
     {
-        public int? StateID { get; set; }
+        public int? CountryID { get; set; }
         public string CountryCode { get; set; }
-        public int? StateCode { get; set; }
-        public string State { get; set; }
+        public string CountryName { get; set; }
         public int UserID { get; set; }
     }
 }

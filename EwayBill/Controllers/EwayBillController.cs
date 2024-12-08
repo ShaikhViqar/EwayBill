@@ -57,55 +57,55 @@ namespace EwayBill.Controllers
             return View(request);
         }
 
-        [JwtAuthorize]
-        [HttpPost]
-        public async Task<ActionResult> Generate(EwayBillRequest model)
-        {
-            if (!string.IsNullOrEmpty(model.DocDate))
-            {
-                if (DateTime.TryParseExact(model.DocDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
-                {
-                    model.DocDate = parsedDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    ModelState.AddModelError("DocDate", "Invalid date format. Please use dd/mm/yyyy.");
-                }
-            }
+        //[JwtAuthorize]
+        //[HttpPost]
+        //public async Task<ActionResult> Generate(EwayBillRequest model)
+        //{
+        //    if (!string.IsNullOrEmpty(model.DocDate))
+        //    {
+        //        if (DateTime.TryParseExact(model.DocDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
+        //        {
+        //            model.DocDate = parsedDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("DocDate", "Invalid date format. Please use dd/mm/yyyy.");
+        //        }
+        //    }
 
-            model.DocumentTypes = (await _ewayBillService.GetDocumentTypes()).Select(dt => new SelectListItem
-            {
-                Value = dt.DocumentCode,
-                Text = dt.DocumentName
-            }).ToList();
+        //    model.DocumentTypes = (await _ewayBillService.GetDocumentTypes()).Select(dt => new SelectListItem
+        //    {
+        //        Value = dt.DocumentCode,
+        //        Text = dt.DocumentName
+        //    }).ToList();
 
-            if (ModelState.IsValid)
-            {
-                var response = await _ewayBillService.GenerateEwayBill(model);
-                if (response.status_cd == "1")
-                {
-                    //ViewBag.Message = "E-Way Bill generated successfully.";
-                    //ViewBag.ResponseData = response.Data;
-                    //return RedirectToAction("EwayBillSuccess", new { responseData = JsonConvert.SerializeObject(response) });
+        //    if (ModelState.IsValid)
+        //    {
+        //        var response = await _ewayBillService.GenerateEwayBill(model);
+        //        if (response.status_cd == "1")
+        //        {
+        //            //ViewBag.Message = "E-Way Bill generated successfully.";
+        //            //ViewBag.ResponseData = response.Data;
+        //            //return RedirectToAction("EwayBillSuccess", new { responseData = JsonConvert.SerializeObject(response) });
 
-                    TempData["ResponseData"] = JsonConvert.SerializeObject(response);
-                    return RedirectToAction("EwayBillSuccess");
-                }
-                else
-                {
-                    //ViewBag.Message = $"Error: {response.Error}";
-                    ViewBag.Message = "Failed to generate E-Way Bill";
-                    //ViewBag.ResponseData = null;
-                }
-                return View(model);
-            }
-            else
-            {
-                ViewBag.Message = "Invalid model data.";
-                //ViewBag.ResponseData = null;
-            }
-            return View(model);
-        }
+        //            TempData["ResponseData"] = JsonConvert.SerializeObject(response);
+        //            return RedirectToAction("EwayBillSuccess");
+        //        }
+        //        else
+        //        {
+        //            //ViewBag.Message = $"Error: {response.Error}";
+        //            ViewBag.Message = "Failed to generate E-Way Bill";
+        //            //ViewBag.ResponseData = null;
+        //        }
+        //        return View(model);
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Message = "Invalid model data.";
+        //        //ViewBag.ResponseData = null;
+        //    }
+        //    return View(model);
+        //}
 
         //[HttpGet]
         //public ActionResult Generate()
@@ -207,6 +207,35 @@ namespace EwayBill.Controllers
             ViewBag.TotalPages = totalPages;
 
             return View(ewayBillResponses);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Generate(EwayBillRequest model)
+        {
+            if (!string.IsNullOrEmpty(model.DocDate))
+            {
+                if (DateTime.TryParseExact(model.DocDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
+                {
+                    model.DocDate = parsedDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Invalid date format. Please use dd/mm/yyyy." });
+                }
+            }
+
+            var response = await _ewayBillService.GenerateEwayBill(model);
+
+            if (response.status_cd == "1")
+            {
+                TempData["ResponseData"] = JsonConvert.SerializeObject(response);
+
+                return Json(new { success = true, message = "E-Way Bill generated successfully.", data = response });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Failed to generate E-Way Bill", error = response.Error });
+            }
         }
     }
 }

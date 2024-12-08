@@ -53,6 +53,8 @@ D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\roslyn\VBCSCompi
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Antlr3.Runtime.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\BCrypt.Net-Next.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\FromHeaderAttribute.dll
+D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\itextsharp.dll
+D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\itextsharp.xmlworker.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.IdentityModel.Abstractions.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -86,6 +88,7 @@ D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\System.Web.WebPa
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\WebActivatorEx.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\WebGrease.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\BCrypt.Net-Next.xml
+D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\itextsharp.xml
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.IdentityModel.Abstractions.xml
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.IdentityModel.JsonWebTokens.xml
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.IdentityModel.Logging.xml
@@ -115,8 +118,8 @@ D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\System.Web.WebPa
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\System.Web.WebPages.Razor.xml
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Antlr3.Runtime.pdb
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.AssemblyReference.cache
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.CoreCompileInputs.cache
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.CopyComplete
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.pdb
+D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.AssemblyReference.cache

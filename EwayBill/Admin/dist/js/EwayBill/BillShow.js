@@ -19,7 +19,7 @@ const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
 
     // Redirect to BillNew.html on button click
     document.getElementById("addNewBillButton").addEventListener("click", function () {
-        window.location.href = "/Admin/dist/pages/Users/BillNew.html";
+        window.location.href = "/Admin/dist/pages/EwayBill/BillNew.html";
     });
 
     function search() {

@@ -218,6 +218,12 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageCountry.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageCountry</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="/Admin/dist/pages/Masters/ManageState.html" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>ManageState</p>
@@ -241,6 +247,12 @@
               <a href="/Admin/dist/pages/EwayBill/BillShow.html" class="nav-link">
                 <i class="nav-icon bi bi-palette"></i>
                 <p>Bill Show</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/Admin/dist/pages/examples/login.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Logout</p>
               </a>
             </li>
           </ul> <!--end::Sidebar Menu-->
@@ -309,8 +321,13 @@
                         <div class="invalid-feedback">Zip Code is required.</div>
                       </div>
                       <div class="col-md-4 mb-3">
-                        <label for="country" class="form-label">Country</label>
+                        <!--<label for="country" class="form-label">Country</label>
                         <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country" required>
+                        <div class="invalid-feedback">Country is required.</div>-->
+                        <label for="country" class="form-label">Country</label>
+                        <select id="countryDropdown" class="form-select" name="country" required>
+                          <option selected disabled value="">Choose Country...</option>
+                        </select>
                         <div class="invalid-feedback">Country is required.</div>
                       </div>
                       <div class="col-md-4 mb-3">

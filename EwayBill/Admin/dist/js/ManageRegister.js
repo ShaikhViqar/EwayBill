@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    fetchStates();
+    //fetchStates();
+    fetchCountries();
     fetchRoles();
 
     $('#username').on('input', function () {
@@ -153,8 +154,56 @@ $(document).ready(function () {
         childFileUploads.files = dataTransfer.files; // Update the input files
     }
 
+    // Fetch countries
+    function fetchCountries() {
+        $.ajax({
+            url: `/Masters/GetManageCountry`,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response.countries) {
+                    var countryDropdown = $('#countryDropdown');
+                    countryDropdown.empty();
+                    countryDropdown.append('<option selected disabled value="">Choose Country...</option>');
+                    $.each(response.countries, function (index, country) {
+                        countryDropdown.append('<option value="' + country.CountryCode + '">' + country.CountryName + '</option>');
+                    });
+                } else if (response.error) {
+                    showToast('Error', response.error, 'danger');
+                }
+            },
+            error: function (xhr, status, error) {
+                showToast('Error', error, 'danger');
+            }
+        });
+    }
+
+    // Fetch states based on the selected country
+    function fetchStates(countryCode) {
+        $.ajax({
+            url: `/Masters/GetManageState?CountryCode=${countryCode}`,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                var stateDropdown = $('#stateDropdown');
+                stateDropdown.empty();
+                stateDropdown.append('<option selected disabled value="">Choose State...</option>');
+                if (response.states && response.states.length > 0) {
+                    $.each(response.states, function (index, state) {
+                        stateDropdown.append('<option value="' + state.StateCode + '">' + state.State + '</option>');
+                    });
+                } else {
+                    showToast('Error', 'No states found for the selected country.', 'danger');
+                }
+            },
+            error: function (xhr, status, error) {
+                showToast('Error', error, 'danger');
+            }
+        });
+    }
+
     // Fetch states
-    function fetchStates() {
+    /*function fetchStates() {
         $.ajax({
             url: `/Masters/GetManageState`,
             type: 'GET',
@@ -175,7 +224,7 @@ $(document).ready(function () {
                 showToast('Error', error, 'danger');
             }
         });
-    }
+    }*/
 
     // Fetch cities based on the selected state
     function fetchCities(stateCode) {
@@ -200,6 +249,23 @@ $(document).ready(function () {
             }
         });
     }
+
+    $('#countryDropdown').change(function () {
+        var countryCode = $(this).val();
+        if (countryCode) {
+            fetchStates(countryCode);
+        } else {
+            // Clear the state dropdown if no country is selected
+            $('#stateDropdown').empty().append('<option selected disabled value="">Choose State...</option>');
+        }
+
+        var selectedStateCode = $(this).val();
+        if (selectedStateCode) {
+            fetchCities(selectedStateCode);
+        } else {
+            $('#cityDropdown').empty().append('<option selected disabled value="">Choose City...</option>');
+        }
+    });
 
     $('#stateDropdown').change(function () {
         var selectedStateCode = $(this).val();
@@ -292,6 +358,7 @@ $(document).ready(function () {
         const loginDetails = new FormData(loginDetailsForm);
 
         const selectedRole = $('#roleDropdown option:selected').text();
+        const selectedCountry = $('#countryDropdown option:selected').text();
         const selectedState = $('#stateDropdown option:selected').text();
         const selectedCity = $('#cityDropdown option:selected').text();
 
@@ -302,10 +369,12 @@ $(document).ready(function () {
         loginDetails.forEach((value, key) => combinedData.append(key, value));
 
         combinedData.delete('role');
+        combinedData.delete('country');
         combinedData.delete('state');
         combinedData.delete('city');
 
         combinedData.append('role', selectedRole);
+        combinedData.append('country', selectedCountry);
         combinedData.append('state', selectedState);
         combinedData.append('city', selectedCity);
 

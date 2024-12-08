@@ -1,10 +1,544 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Bill New</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="AdminLTE 4 | General Form Elements">
+  <meta name="author" content="ColorlibHQ">
+  <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
+  <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css" integrity="sha256-dSokZseQNT08wYEWiz5iLI8QPlKxG+TswNRD8k35cpg=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../dist/css/adminlte.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .toast {
+      opacity: 0.95;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+      border-radius: 8px; /* Rounded corners */
+      padding: 1rem; /* Increase padding */
+    }
+
+    /* Success toast color */
+    .bg-success {
+      background-color: #28a745 !important;
+    }
+
+    /* Error (danger) toast color */
+    .bg-danger {
+      background-color: #dc3545 !important;
+    }
+
+    /* Make text a bit larger for better readability */
+    .toast-body {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* Center the close button vertically */
+    .btn-close {
+      position: relative;
+      top: -4px;
+    }
+  </style>
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <div class="app-wrapper">
+    <nav class="app-header navbar navbar-expand bg-body">
+      <div class="container-fluid">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"> <a class="nav-link" data-widget="navbar-search" href="#" role="button"> <i class="bi bi-search"></i> </a> </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-chat-text"></i> <span class="navbar-badge badge text-bg-danger">3</span> </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <a href="#" class="dropdown-item">
+                <div class="d-flex">
+                  <div class="flex-shrink-0"> <img src="../../../dist/assets/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3"> </div>
+                  <div class="flex-grow-1">
+                    <h3 class="dropdown-item-title">
+                      Brad Diesel
+                      <span class="float-end fs-7 text-danger"><i class="bi bi-star-fill"></i></span>
+                    </h3>
+                    <p class="fs-7">Call me whenever you can...</p>
+                    <p class="fs-7 text-secondary">
+                      <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <div class="d-flex">
+                  <div class="flex-shrink-0"> <img src="../../../dist/assets/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3"> </div>
+                  <div class="flex-grow-1">
+                    <h3 class="dropdown-item-title">
+                      John Pierce
+                      <span class="float-end fs-7 text-secondary"> <i class="bi bi-star-fill"></i> </span>
+                    </h3>
+                    <p class="fs-7">I got your message bro</p>
+                    <p class="fs-7 text-secondary">
+                      <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <div class="d-flex">
+                  <div class="flex-shrink-0"> <img src="../../../dist/assets/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3"> </div>
+                  <div class="flex-grow-1">
+                    <h3 class="dropdown-item-title">
+                      Nora Silvester
+                      <span class="float-end fs-7 text-warning"> <i class="bi bi-star-fill"></i> </span>
+                    </h3>
+                    <p class="fs-7">The subject goes here</p>
+                    <p class="fs-7 text-secondary">
+                      <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-bs-toggle="dropdown" href="#"> <i class="bi bi-bell-fill"></i> <span class="navbar-badge badge text-bg-warning">15</span> </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <span class="dropdown-item dropdown-header">15 Notifications</span>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="bi bi-envelope me-2"></i> 4 new messages
+                <span class="float-end text-secondary fs-7">3 mins</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="bi bi-people-fill me-2"></i> 8 friend requests
+                <span class="float-end text-secondary fs-7">12 hours</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
+                <span class="float-end text-secondary fs-7">2 days</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </div>
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="#" data-lte-toggle="fullscreen"> <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i> <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none;"></i> </a> </li>
+          <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img src="../../../dist/assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline">Alexander Pierce</span> </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <li class="user-header text-bg-primary">
+                <img src="../../../dist/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image">
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2023</small>
+                </p>
+              </li>
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-4 text-center"> <a href="#">Followers</a> </div>
+                  <div class="col-4 text-center"> <a href="#">Sales</a> </div>
+                  <div class="col-4 text-center"> <a href="#">Friends</a> </div>
+                </div>
+              </li>
+              <li class="user-footer"> <a href="#" class="btn btn-default btn-flat">Profile</a> <a href="#" class="btn btn-default btn-flat float-end">Sign out</a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+      <div class="sidebar-brand"> <a href="../index.html" class="brand-link"> <img src="../../../dist/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow"> <span class="brand-text fw-light">AdminLTE 4</span> </a> </div>
+      <div class="sidebar-wrapper">
+        <nav class="mt-2">
+          <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-box-seam-fill"></i>
+                <p>
+                  Masters
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageRole.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageRole</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageCountry.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageCountry</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageState.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageState</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/Admin/dist/pages/Masters/ManageCity.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>ManageCity</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/Admin/dist/pages/Users/ManageUsers.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Manage Users</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/Admin/dist/pages/EwayBill/BillShow.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Bill Show</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/Admin/dist/pages/examples/login.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Logout</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+    <main class="app-main">
+      <div class="app-content-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <h3>Bill New</h3>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-end">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Bill New</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="container-fluid">
+          <div class="row g-4">
+            <div class="col-md-12">
+
+              <div class="card card-primary card-outline mb-4">
+                <form id="InvoiceDetails" method="post" action="/EwayBill/Generate">
+                  <div class="card-header">
+                    <div class="card-title">Invoice Details</div>
+                    <button type="button" class="btn btn-primary float-end" id="addBackButton">Back</button>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4 mb-3">
+                        <label for="supplyType" class="form-label">Supply Type:</label>
+                        <input type="text" class="form-control" id="supplyType" name="supplyType" value="O" placeholder="Enter Supply Type" required>
+                        <div class="invalid-feedback">Supply Type is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="subSupplyType" class="form-label">Sub Supply Type:</label>
+                        <input type="text" class="form-control" id="subSupplyType" name="subSupplyType" value="1" placeholder="Enter Sub Supply Type" required>
+                        <div class="invalid-feedback">Sub Supply Type is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="documentType" class="form-label">Document Type:</label>
+                        <input type="text" class="form-control" id="documentType" name="documentType" value="INV" placeholder="Enter Document Type" required>
+                        <div class="invalid-feedback">Document Type is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="documentNumber" class="form-label">Document Number:</label>
+                        <input type="text" class="form-control" id="documentNumber" name="documentNumber" placeholder="Enter Document Number" required>
+                        <div class="invalid-feedback">Document Number is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="documentDate" class="form-label">Document Date:</label>
+                        <input type="date" class="form-control" id="documentDate" name="documentDate" required>
+                        <div class="invalid-feedback">Document Date is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromGSTIN" class="form-label">From GSTIN:</label>
+                        <input type="text" class="form-control" id="fromGSTIN" name="fromGSTIN" value="05AAACH6188F1ZM" placeholder="Enter From GSTIN" required>
+                        <div class="invalid-feedback">From GSTIN is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromTraderName" class="form-label">From Trader Name:</label>
+                        <input type="text" class="form-control" id="fromTraderName" name="fromTraderName" value="welton" placeholder="Enter From Trader Name" required>
+                        <div class="invalid-feedback">From Trader Name is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromAddress1" class="form-label">From Address 1:</label>
+                        <input type="text" class="form-control" id="fromAddress1" name="fromAddress1" value="2ND CROSS NO 59  19  A" placeholder="Enter From Address 1" required>
+                        <div class="invalid-feedback">From Address 1 is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromAddress2" class="form-label">From Address 2:</label>
+                        <input type="text" class="form-control" id="fromAddress2" name="fromAddress2" value="GROUND FLOOR OSBORNE ROAD" placeholder="Enter From Address 2">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromPlace" class="form-label">From Place:</label>
+                        <input type="text" class="form-control" id="fromPlace" name="fromPlace" value="FRAZER TOWN" placeholder="Enter From Place" required>
+                        <div class="invalid-feedback">From Place is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="actFromStateCode" class="form-label">Act From State Code:</label>
+                        <input type="text" class="form-control" id="actFromStateCode" name="actFromStateCode" value="5" placeholder="Enter Act From State Code" required>
+                        <div class="invalid-feedback">Act From State Code is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromPincode" class="form-label">From Pincode:</label>
+                        <input type="text" class="form-control" id="fromPincode" name="fromPincode" value="263652" placeholder="Enter From Pincode" required>
+                        <div class="invalid-feedback">From Pincode is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="fromStateCode" class="form-label">From State Code:</label>
+                        <input type="text" class="form-control" id="fromStateCode" name="fromStateCode" value="5" placeholder="Enter From State Code" required>
+                        <div class="invalid-feedback">From State Code is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toGSTIN" class="form-label">To GSTIN:</label>
+                        <input type="text" class="form-control" id="toGSTIN" name="toGSTIN" value="05AAACH6886N1Z0" placeholder="Enter To GSTIN" required>
+                        <div class="invalid-feedback">To GSTIN is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toTraderName" class="form-label">To Trader Name:</label>
+                        <input type="text" class="form-control" id="toTraderName" name="toTraderName" value="sthuthya" placeholder="Enter To Trader Name" required>
+                        <div class="invalid-feedback">To Trader Name is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toAddress1" class="form-label">To Address 1:</label>
+                        <input type="text" class="form-control" id="toAddress1" name="toAddress1" value="Shree Nilaya" placeholder="Enter To Address 1" required>
+                        <div class="invalid-feedback">To Address 1 is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toAddress2" class="form-label">To Address 2:</label>
+                        <input type="text" class="form-control" id="toAddress2" name="toAddress2" value="Dasarahosahalli" placeholder="Enter To Address 2">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toPlace" class="form-label">To Place:</label>
+                        <input type="text" class="form-control" id="toPlace" name="toPlace" value="Beml Nagar" placeholder="Enter To Place" required>
+                        <div class="invalid-feedback">To Place is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toPincode" class="form-label">To Pincode:</label>
+                        <input type="text" class="form-control" id="toPincode" name="toPincode" value="263680" placeholder="Enter To Pincode" required>
+                        <div class="invalid-feedback">To Pincode is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="actToStateCode" class="form-label">Act To State Code:</label>
+                        <input type="text" class="form-control" id="actToStateCode" name="actToStateCode" value="5" placeholder="Enter Act To State Code" required>
+                        <div class="invalid-feedback">Act To State Code is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="toStateCode" class="form-label">To State Code:</label>
+                        <input type="text" class="form-control" id="toStateCode" name="toStateCode" value="5" placeholder="Enter To State Code" required>
+                        <div class="invalid-feedback">To State Code is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="transactionType" class="form-label">Transaction Type:</label>
+                        <input type="text" class="form-control" id="transactionType" name="transactionType" value="1" placeholder="Enter Transaction Type" required>
+                        <div class="invalid-feedback">Transaction Type is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="dispatchFromGSTIN" class="form-label">Dispatch From GSTIN:</label>
+                        <input type="text" class="form-control" id="dispatchFromGSTIN" name="dispatchFromGSTIN" value="05AAACH6188F1ZM" placeholder="Enter Dispatch From GSTIN" required>
+                        <div class="invalid-feedback">Dispatch From GSTIN is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="dispatchFromTraderName" class="form-label">Dispatch From Trader Name:</label>
+                        <input type="text" class="form-control" id="dispatchFromTraderName" name="dispatchFromTraderName" value="ABC Traders" placeholder="Enter Dispatch From Trader Name" required>
+                        <div class="invalid-feedback">Dispatch From Trader Name is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="shipToGSTIN" class="form-label">Ship To GSTIN:</label>
+                        <input type="text" class="form-control" id="shipToGSTIN" name="shipToGSTIN" value="05AAACH6886N1Z0" placeholder="Enter Ship To GSTIN" required>
+                        <div class="invalid-feedback">Ship To GSTIN is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="shipToTradeName" class="form-label">Ship To Trade Name:</label>
+                        <input type="text" class="form-control" id="shipToTradeName" name="shipToTradeName" value="XYZ Traders" placeholder="Enter Ship To Trade Name" required>
+                        <div class="invalid-feedback">Ship To Trade Name is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="totalValue" class="form-label">Total Value:</label>
+                        <input type="text" class="form-control" id="totalValue" name="totalValue" value="56099" placeholder="Enter Total Value" required>
+                        <div class="invalid-feedback">Total Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="cgstValue" class="form-label">CGST Value:</label>
+                        <input type="text" class="form-control" id="cgstValue" name="cgstValue" value="150.34" placeholder="Enter CGST Value" required>
+                        <div class="invalid-feedback">CGST Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="sgstValue" class="form-label">SGST Value:</label>
+                        <input type="text" class="form-control" id="sgstValue" name="sgstValue" value="150.34" placeholder="Enter SGST Value" required>
+                        <div class="invalid-feedback">SGST Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="igstValue" class="form-label">IGST Value:</label>
+                        <input type="text" class="form-control" id="igstValue" name="igstValue" value="0" placeholder="Enter IGST Value" required>
+                        <div class="invalid-feedback">IGST Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="cessValue" class="form-label">Cess Value:</label>
+                        <input type="text" class="form-control" id="cessValue" name="cessValue" value="400.56" placeholder="Enter Cess Value" required>
+                        <div class="invalid-feedback">Cess Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="cessNonAdvolValue" class="form-label">Cess Non-Advol Value:</label>
+                        <input type="text" class="form-control" id="cessNonAdvolValue" name="cessNonAdvolValue" value="400" placeholder="Enter Cess Non-Advol Value" required>
+                        <div class="invalid-feedback">Cess Non-Advol Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="totalInvoiceValue" class="form-label">Total Invoice Value:</label>
+                        <input type="text" class="form-control" id="totalInvoiceValue" name="totalInvoiceValue" value="57200.24" placeholder="Enter Total Invoice Value" required>
+                        <div class="invalid-feedback">Total Invoice Value is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="transportMode" class="form-label">Transport Mode:</label>
+                        <input type="text" class="form-control" id="transportMode" name="transportMode" value="1" placeholder="Enter Transport Mode" required>
+                        <div class="invalid-feedback">Transport Mode is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="transportDistance" class="form-label">Transport Distance:</label>
+                        <input type="text" class="form-control" id="transportDistance" name="transportDistance" value="67" placeholder="Enter Transport Distance" required>
+                        <div class="invalid-feedback">Transport Distance is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="transporterID" class="form-label">Transporter ID:</label>
+                        <input type="text" class="form-control" id="transporterID" name="transporterID" value="05AAACG0904A1ZL" placeholder="Enter Transporter ID" required>
+                        <div class="invalid-feedback">Transporter ID is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="transportDocumentNo" class="form-label">Transport Document No:</label>
+                        <input type="text" class="form-control" id="transportDocumentNo" name="transportDocumentNo" value="12" placeholder="Enter Transport Document No" required>
+                        <div class="invalid-feedback">Transport Document No is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="vehicleNo" class="form-label">Vehicle No:</label>
+                        <input type="text" class="form-control" id="vehicleNo" name="vehicleNo" value="APR3214" placeholder="Enter Vehicle No" required>
+                        <div class="invalid-feedback">Vehicle No is required.</div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="vehicleType" class="form-label">Vehicle Type:</label>
+                        <input type="text" class="form-control" id="vehicleType" name="vehicleType" value="O" placeholder="Enter Vehicle Type" required>
+                        <div class="invalid-feedback">Vehicle Type is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card card-primary card-outline mb-4">
+                <form id="InvoiceItems" method="post" action="/EwayBill/Generate">
+                  <div class="card-header">
+                    <div class="card-title">Invoice Items</div>
+                  </div>
+                  <div class="card-body">
+                    <div id="itemContainer">
+                      <div class="itemRow">
+                        <div class="row">
+                          <div class="col-md-4 mb-3">
+                            <label for="productName" class="form-label">Product Name:</label>
+                            <input type="text" class="form-control" id="productName" name="productName" value="Wheat" placeholder="Enter Product Name" required>
+                            <div class="invalid-feedback">Product Name is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="productDescription" class="form-label">Product Description:</label>
+                            <input type="text" class="form-control" id="productDescription" name="productDescription" value="Wheat" placeholder="Enter Product Description" required>
+                            <div class="invalid-feedback">Product Description is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="hsnCode" class="form-label">HSN Code:</label>
+                            <input type="text" class="form-control" id="hsnCode" name="hsnCode" value="1001" placeholder="Enter HSN Code" required>
+                            <div class="invalid-feedback">HSN Code is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="quantity" class="form-label">Quantity:</label>
+                            <input type="text" class="form-control" id="quantity" name="quantity" value="4" placeholder="Enter Quantity" required>
+                            <div class="invalid-feedback">Quantity is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="quantityUnit" class="form-label">Quantity Unit:</label>
+                            <input type="text" class="form-control" id="quantityUnit" name="quantityUnit" value="BOX" placeholder="Enter Quantity Unit" required>
+                            <div class="invalid-feedback">Quantity Unit is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="taxableAmount" class="form-label">Taxable Amount:</label>
+                            <input type="text" class="form-control" id="taxableAmount" name="taxableAmount" value="56099" placeholder="Enter Taxable Amount" required>
+                            <div class="invalid-feedback">Taxable Amount is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="cgstRate" class="form-label">CGST Rate:</label>
+                            <input type="text" class="form-control" id="cgstRate" name="cgstRate" value="1.5" placeholder="Enter CGST Rate" required>
+                            <div class="invalid-feedback">CGST Rate is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="sgstRate" class="form-label">SGST Rate:</label>
+                            <input type="text" class="form-control" id="sgstRate" name="sgstRate" value="1.5" placeholder="Enter SGST Rate" required>
+                            <div class="invalid-feedback">SGST Rate is required.</div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="igstRate" class="form-label">IGST Rate:</label>
+                            <input type="text" class="form-control" id="igstRate" name="igstRate" value="0" placeholder="Enter IGST Rate">
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="cessRate" class="form-label">Cess Rate:</label>
+                            <input type="text" class="form-control" id="cessRate" name="cessRate" value="0" placeholder="Enter Cess Rate" required>
+                            <div class="invalid-feedback">Cess Rate is required.</div>
+                          </div>
+                          <div class="col-md-12 mb-3">
+                            <button type="button" class="btn btn-danger removeItem">Remove Item</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="addItemButton">Add Item</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card-footer">
+                <button type="button" class="btn btn-primary float-end" id="submitAll">Submit All</button>
+              </div>
+
+              <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+                <div id="toastMessage" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body" id="toastBody"></div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="app-footer">
+      <div class="float-end d-none d-sm-block"> <b>Version</b> 4.0.0 </div>
+      <strong>Copyright &copy; 2024 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script> <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I=" crossorigin="anonymous"></script> <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script> <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
+  <script src="/Admin/dist/js/EwayBill/BillNew.js"></script>
 </body>
 </html>
