@@ -120,6 +120,6 @@ D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Antlr3.Runtime.p
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.AssemblyReference.cache
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.CoreCompileInputs.cache
-D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.CopyComplete
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.dll
 D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.pdb
+D:\01_Futuristic5\01_EWayBillMVC\EWayBill\EwayBill\EwayBill\obj\Debug\EwayBill.csproj.Up2Date
